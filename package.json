@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "webpack serve --config webpack.config.js --mode=development --open",
     "build": "webpack --config webpack.config.js --mode=production",
-    "heroku-postbuild": "ng build --prod",
     "start": "node server.js",
     "deploy": "git add . && git commit -m 'from heroku' && git push heroku master"
   },
