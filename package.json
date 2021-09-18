@@ -2,7 +2,7 @@
   "name": "prototype-parth-with-webpack",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/main.[contenthash].js",
   "scripts": {
     "dev": "webpack serve --config webpack.config.js --mode=development --open",
     "build": "webpack --config webpack.config.js --mode=production",
