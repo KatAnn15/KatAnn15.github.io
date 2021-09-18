@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack serve --config webpack.config.js --mode=development --open",
     "build": "webpack --config webpack.config.js --mode=production",
-    "postinstall": "webpack --config webpack.config.js -p",
+    "postinstall": "npm run tsc",
     "start": "node server.js"
   },
   "author": "",
