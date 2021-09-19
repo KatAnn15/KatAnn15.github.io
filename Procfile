@@ -1,1 +1,1 @@
-web: node dist/main.5a7a63b27ebe9faa2726.js
+web: node server.js
