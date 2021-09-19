@@ -2,6 +2,7 @@ import * as React from 'react';
 import ListGalleryItem from './ListGalleryItem';
 import firebase from "../../Global/firebase_setup";
 import { useCallback, useEffect, useState } from 'react';
+import "./ListGallery.scss";
 
 interface ListGalleryProps {
     files: JSX.Element

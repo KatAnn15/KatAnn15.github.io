@@ -5,6 +5,7 @@ import MovieItemSimilar from '../SimilarItems/SimilarItemsOne';
 import { useEffect, useCallback, useState } from 'react';
 import { useLocation } from 'react-router';
 import {key} from "../../../Global/Context";
+import "./MovieItemIndividual.scss";
 
 interface MovieDetailsProps {
     movieDetails: ({id: number, adult: Boolean, genres: {id: number, name: string}[], original_title: string, overview: string, popularity: number, poster_path: string, release_date: string, revenue: number, status: string, tagline: string, vote_count: number}),

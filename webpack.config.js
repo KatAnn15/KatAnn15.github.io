@@ -12,11 +12,24 @@ const setRules = (mode) => {
   const rules = [
     {
       test: /\.(tsx?|jsx?)$/i,
+      exclude: /node_modules/,
       use: {
         loader: "babel-loader",
         options: {
           presets: [
-            "@babel/preset-env",
+            [
+              "@babel/preset-env",
+              {
+                targets: {
+                  edge: "17",
+                  firefox: "60",
+                  chrome: "67",
+                  safari: "11.1",
+                },
+                useBuiltIns: "usage",
+                corejs: "3.6.5",
+              },
+            ],
             "@babel/preset-typescript",
             "@babel/preset-react",
           ],
@@ -98,6 +111,7 @@ module.exports = (env, options) => {
     },
     optimization: {
       minimizer: [new CssMinimizerPlugin(), new TerserWebpackPlugin()],
+      minimize: true,
     },
     performance: {
       hints: false,
@@ -109,13 +123,9 @@ module.exports = (env, options) => {
       extensions: ["*", ".ts", ".tsx", ".js", ".jsx"],
       plugins: [new TsConfigPathsPlugin()],
     },
-  };
-
-  if (mode === "development") {
-    config.devServer = {
+    devServer: {
       static: "./dist",
-    };
-  }
-
+    },
+  };
   return config;
 };
