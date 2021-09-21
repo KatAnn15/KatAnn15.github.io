@@ -10,7 +10,8 @@ interface ListGalleryProps {
 
 const ListGallery: React.FC = () => {
     const ref = firebase.firestore();
-    const [files, setFiles] = useState<(ListGalleryProps["files"]|null)[]>([null])
+    const [files, setFiles] = useState<(ListGalleryProps["files"]|null)[]>([null]);
+    
     const fetchListGalleryItems = useCallback(async() => {
         const files = await ref.collection("HomeListGallery");
         const allFiles: JSX.Element[] = [];

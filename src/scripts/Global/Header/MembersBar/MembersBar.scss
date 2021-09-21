@@ -47,7 +47,7 @@
 }
 @media screen and(max-width: 969px) {
   .members-bar_wrapper {
-    padding: 20px 20px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     height: 150px;
@@ -70,5 +70,14 @@
       border: none;
       font-size: 20px;
     }
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .members-bar_wrapper {
+    padding: 20px 0;
+  }
+  .members-bar_login-button {
+    width: 100px;
   }
 }

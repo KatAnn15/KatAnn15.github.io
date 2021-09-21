@@ -25,21 +25,18 @@ const AboveTheFold: React.FC = ()  => {
     const [ATFData, setATFData] = useState<Props["ATFData"]>({title: "", subtitle: "", imageURL: "", actionNote: ""});
     const context = useContext(GlobalContext);
 
-    const ref = firebase.firestore().collection("ATF");
+    const ref = firebase.firestore();
 
-    const fetchAFTData = useCallback(() => {
+    const fetchAFTData = useCallback(async () => {
+        const collection = ref.collection("ATF")
         const data: firebase.firestore.DocumentData[] = [];
-        ref.onSnapshot((snaps) => {
+        collection.onSnapshot((snaps) => {
            snaps.forEach(snap => {data.push(snap.data())});
            setATFData({title: data[0].title, subtitle: data[0].subtitle, imageURL: data[0].imageURL, actionNote: data[0].actionNote});
          });          
     }, [ref])
 
-    const setSubsctriptionStatus = () => {
-        context.setSubscriptionStatus(true)
-    }
-
-    useEffect(() => {
+        useEffect(() => {
         fetchAFTData()
     }, [fetchAFTData])
 
@@ -56,7 +53,7 @@ const AboveTheFold: React.FC = ()  => {
                 <div className="above-the-fold_loggedIn__false_div">
                 <h2 className="above-the-fold_subtitle">{ATFData.subtitle}</h2>
                 <h3 className="above-the-fold_action-note">{ATFData.actionNote}</h3>
-                {context.subscribed ? null : <button className="above-the-fold_join-btn" onClick={setSubsctriptionStatus}>Subscribe</button>}
+                {context.subscribed ? null : <Link to={"/pricing-plans"}><button className="above-the-fold_join-btn">Subscribe</button></Link>}
                 </div> 
                 }
                 </div>

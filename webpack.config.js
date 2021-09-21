@@ -101,7 +101,7 @@ module.exports = (env, options) => {
   const mode = options.mode;
 
   const config = {
-    entry: "./src/index.tsx",
+    entry: ["@babel/polyfill", "./src/index.tsx"],
     output: {
       filename: "main.[contenthash].js",
       path: path.resolve(__dirname, "dist"),
@@ -120,8 +120,25 @@ module.exports = (env, options) => {
     },
     plugins: setPlugins(mode),
     resolve: {
-      extensions: ["*", ".ts", ".tsx", ".js", ".jsx"],
-      plugins: [new TsConfigPathsPlugin()],
+      extensions: ["*", ".ts", ".tsx", ".js", ".jsx", ".png"],
+      plugins: [
+        new TsConfigPathsPlugin({
+          configFile: path.resolve(__dirname, "tsconfig.json"),
+        }),
+      ],
+      alias: {
+        "@images": path.resolve(__dirname, "src/assets/images"),
+      },
+      fallback: {
+        zlib: false,
+        path: false,
+        crypto: false,
+        stream: false,
+        http: false,
+        util: false,
+        https: false,
+        child_process: false,
+      },
     },
     devServer: {
       static: "./dist",

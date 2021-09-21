@@ -64,7 +64,7 @@ const HeaderGlobal:React.FC = () => {
             <SearchBar />
             <div className="header-global_members-area" style={{display: isMobile && !areaExpanded ? "none" : "flex"}}>
                 <span> {context.loggedIn ? `Welcome, ${context.name}!` :"UNLIMITED TV SHOWS & MOVIES"}</span>
-                {!context.subscribed && context.loggedIn ?  <button className="subscription-bar" onClick={setSubscribedStatus}>Join Now</button> : null}
+                {!context.subscribed && context.loggedIn ?  <Link to={"/pricing-plans"}><button className="subscription-bar">Join Now</button></Link> : null}
                 <button className="login-bar" onClick={setLoggedInStatus}>{loggedIn ? "Sign Out" : "Sign Up"}</button>
             </div>
             {isMobile ? <button className="members-bar_mobile-more-btn" onClick={toggleMembersAreaMobile}>More</button>: null}
