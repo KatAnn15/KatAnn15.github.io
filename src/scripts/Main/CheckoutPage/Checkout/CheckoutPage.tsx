@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect, useCallback} from 'react';
 import { useLocation } from 'react-router';
 import { GlobalContext } from 'src/scripts/Global/Context';
+import PlanOverview from './StripeForm/PlanOverview';
 
 import {CountriesProps, PlanInfoProps} from "./Checkout.d";
 import "./CheckoutPage.scss";
@@ -48,6 +49,7 @@ const CheckoutPage:React.FC = () => {
                     <input type="text" className="checkout-zip" placeholder="ZIP Code"/>
                 </div>
                 <div className="payment-widget">
+                  <PlanOverview planInfo={planInfo}/>
                 </div>
               </div>
         </div>
