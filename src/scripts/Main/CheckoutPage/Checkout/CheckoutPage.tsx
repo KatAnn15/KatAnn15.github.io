@@ -32,7 +32,7 @@ const CheckoutPage:React.FC = () => {
       const formData = new FormData(form);
       formData.append("price", (planInfo? planInfo.price.toString() : ""));
       formData.append("plan", (planInfo? planInfo.title.toString() : ""))
-      fetch("http://localhost:8080/create-checkout-session", {
+      fetch("https://" + window.location.hostname  + "/create-checkout-session", {
         method: "POST",
         body: formData
       }).then(resp => resp.json()).then(data => window.open(data.url, "_blank"))
@@ -40,7 +40,7 @@ const CheckoutPage:React.FC = () => {
 
     const setCountriesList: () => void =  useCallback(async() => {
       setPlanData();
-      const request = await fetch("http://localhost:8080/countries");
+      const request = await fetch("https://" + window.location.hostname + "/countries");
       const json: {data: {country: string}[]}  =  await request.json();
       const data = json.data;
       const keys = Object.keys(data);

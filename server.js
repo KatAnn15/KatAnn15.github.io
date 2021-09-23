@@ -34,7 +34,7 @@ app.listen(port);
 const stripeSecretKey =
   "sk_test_51JcASVF2J19ETIqFPiHxTkPrR6De6I6Eme95gjz86xKW3ZoluUOpgwyi1xuoTzOSU5J1eT7Xmdrh2FVQZ8yevWSP008AcItihp";
 const stripe = require("stripe")(stripeSecretKey);
-const DOMAIN = "http://localhost:8080/#/stripe-thank-you-page";
+const DOMAIN = "https://prototype-part.herokuapp.com/#/stripe-thank-you-page";
 
 app.post("/create-checkout-session", async (req, res) => {
   try {
