@@ -1,25 +1,32 @@
 import React, {useState, useCallback, useEffect} from 'react';
-import { StripeFormProps } from '../Checkout';
-import { stripePubKey } from '../../../PricingPlansPage/PricingPlans.d';
-import StripeCheckout from 'react-stripe-checkout';
-import { PlanInfoProps} from ".././Checkout.d";
+import { PlanOverviewProps } from '../Checkout';
+import { PlanInfoProps} from "../Checkout";
+import SliderChart from 'src/scripts/Main/Utils/SliderChart/SliderChart';
 import "./PlanOverview.scss";
+import { features } from '../../../Utils/SliderChart/ChartConsts';
 
-const PlanOverview: React.FC<StripeFormProps> = ({planInfo}) => {
+let emailField;
+
+const PlanOverview: React.FC<PlanOverviewProps> = ({planInfo}) => {
     const [planData, setPlanData] = useState<PlanInfoProps["planInfo"]>(null);
     const checkoutPlanStyle = {
         background: planInfo?.color 
-    }
+    }   
 
-    const handleToken = () => {
-      
+    const setPlanFeatures = () => {
+        if (planData) {
+            return features.map(feature => 
+                <SliderChart feature={feature} currentPlan={planData} sliderWidth={150} mode="short"/>
+            )
+        }
     }
-
+    
     const setPlanInfo: () => void = useCallback(() => {
+        emailField = document.getElementById("checkout-email") as HTMLInputElement;
         if (planInfo) {
             setPlanData(planInfo)
         }
-    },[planInfo])
+    },[planInfo, emailField])
     useEffect(() => setPlanInfo(), [setPlanInfo])
     
     return (
@@ -30,11 +37,9 @@ const PlanOverview: React.FC<StripeFormProps> = ({planInfo}) => {
                     <h3 className="checkout_plan-name">{planData?.name}</h3>
                     <h3 className="checkout_plan-price"><span>$</span>{planData?.price}</h3>
                     <h3 className="checkout_plan-title">{planData?.title}</h3>
+                    <div className="plans-tech-fetaures_container">
+                    {setPlanFeatures()}
                 </div>
-                <div className="checkout-btn_wrapper">
-                     <StripeCheckout stripeKey={stripePubKey} token={handleToken} amount={planData?.price}>
-                         <button className="stripe-button_placeholder">Pay now</button>
-                     </StripeCheckout>
                 </div>
             </div>
         </div>

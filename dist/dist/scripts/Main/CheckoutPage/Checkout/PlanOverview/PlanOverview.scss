@@ -1,0 +1,136 @@
+.payment-widget {
+  .checkout-plan_wrapper {
+    width: 400px;
+    background-color: rgba(128, 128, 131, 0.055);
+    border: 1px solid rgba(128, 128, 128, 0.123);
+    padding: 25px 30px;
+    border-radius: 5px;
+    margin: 30px 10px 30px 50px;
+    min-height: 600px;
+    position: relative;
+    .checkout-plan_title {
+      font-size: 26px;
+      color: rgb(79, 84, 88);
+      text-align: left;
+    }
+    .checkout-plan_plan-info-wrapper {
+      text-align: left;
+      .plan-details_container {
+        color: white;
+        text-shadow: 0 1px 3px black;
+        min-height: 410px;
+        width: 330px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px gray;
+        padding: 5px 25px;
+        font-size: 16px;
+        .checkout_plan-name {
+          font-size: 36px;
+          color: red;
+          text-shadow: 0 0 5px white;
+        }
+        .plans-tech-fetaures_container {
+          margin-top: 40px;
+          .feature-wrapper {
+            display: flex;
+            justify-content: space-between;
+            width: 270px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and(max-width: 969px) {
+  .payment-widget {
+    margin: 0;
+
+    .checkout-plan_wrapper {
+      position: relative;
+      width: 100%;
+      background-color: rgba(128, 128, 131, 0.055);
+      border: 1px solid rgba(128, 128, 128, 0.123);
+      padding: 0;
+      border-radius: 5px;
+      margin: 0;
+      min-height: 200px;
+      height: fit-content;
+      .checkout-plan_title {
+        display: none;
+      }
+      .checkout-plan_plan-info-wrapper {
+        text-align: left;
+        .plan-details_container {
+          min-height: 200px;
+          width: 100%;
+          position: relative;
+          padding: 20px;
+          .checkout_plan-name {
+            font-size: 36px;
+            color: red;
+            text-shadow: 0 0 5px white;
+          }
+          .plans-tech-fetaures_container {
+            position: absolute;
+            top: 30px;
+            right: 0;
+            width: 60%;
+            .feature-wrapper {
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+              font-size: 14px;
+              padding-right: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and(max-width: 481px) {
+  .payment-widget {
+    .checkout-plan_wrapper {
+      .checkout-plan_plan-info-wrapper {
+        .plan-details_container {
+          .plans-tech-fetaures_container {
+            position: absolute;
+            right: 0;
+            width: 40%;
+            text-align: right;
+            margin: 0;
+            .feature-wrapper {
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+              width: 100%;
+              font-size: 14px;
+              padding-right: 10px;
+              .plan-chart_wrapper {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                .slider-element {
+                  width: 100%;
+                  .slider-body {
+                    height: 18px;
+                    overflow: hidden;
+                    background-color: gray;
+                    border-radius: 8px;
+                    width: 100% !important;
+                    span {
+                      border-radius: 10px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
