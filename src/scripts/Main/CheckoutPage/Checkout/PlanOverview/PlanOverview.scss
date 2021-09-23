@@ -46,7 +46,6 @@
 @media screen and(max-width: 969px) {
   .payment-widget {
     margin: 0;
-
     .checkout-plan_wrapper {
       position: relative;
       width: 100%;
@@ -76,7 +75,7 @@
             position: absolute;
             top: 30px;
             right: 0;
-            width: 60%;
+            width: 50%;
             .feature-wrapper {
               display: flex;
               justify-content: space-between;
@@ -91,7 +90,7 @@
   }
 }
 
-@media screen and(max-width: 481px) {
+@media screen and(max-width: 560px) {
   .payment-widget {
     .checkout-plan_wrapper {
       .checkout-plan_plan-info-wrapper {

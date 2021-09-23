@@ -15,8 +15,8 @@ const PlanOverview: React.FC<PlanOverviewProps> = ({planInfo}) => {
 
     const setPlanFeatures = () => {
         if (planData) {
-            return features.map(feature => 
-                <SliderChart feature={feature} currentPlan={planData} sliderWidth={150} mode="short"/>
+            return features.map((feature, i) => 
+                <SliderChart feature={feature} currentPlan={planData} sliderWidth={150} mode="short" key={"ftr" + i}/>
             )
         }
     }

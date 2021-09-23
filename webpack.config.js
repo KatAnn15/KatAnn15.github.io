@@ -54,7 +54,7 @@ const setRules = (mode) => {
       },
     },
     {
-      test: /\.(woff(2)?|ttf|eot)?$/i,
+      test: /\.(woff|ttf|eot)?$/i,
       use: {
         loader: "file-loader",
         options: {
@@ -85,9 +85,6 @@ const setPlugins = (mode) => {
     new HtmlWebpackPlugin({ template: "./src/templates/template.html" }),
     new CleanWebpackPlugin(),
     new ImageminWebpWebpackPlugin(),
-    new CopyPlugin({
-      patterns: [{ from: "src", to: "dist" }],
-    }),
   ];
   if (mode === "production") {
     plugins.push(
@@ -128,16 +125,6 @@ module.exports = (env, options) => {
       ],
       alias: {
         "@images": path.resolve(__dirname, "src/assets/images"),
-      },
-      fallback: {
-        zlib: false,
-        path: false,
-        crypto: false,
-        stream: false,
-        http: false,
-        util: false,
-        https: false,
-        child_process: false,
       },
     },
     devServer: {

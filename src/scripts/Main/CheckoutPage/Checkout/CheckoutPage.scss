@@ -79,6 +79,25 @@
   }
 }
 
+@media screen and (max-width: 1800px) {
+  .checkout-page_wrapper {
+    width: 90%;
+    .checkout-form {
+      .user-details {
+        padding-right: 20px;
+        .checkout-title {
+          width: 300px;
+        }
+        .stripe-form {
+          .checkout-btn {
+            left: 60%;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 969px) {
   .checkout-page_wrapper {
     width: 80%;
@@ -108,7 +127,7 @@
           .checkout-btn {
             width: 100%;
             position: relative;
-            right: 0;
+            left: 0;
             bottom: 0;
             margin-top: 30px;
           }

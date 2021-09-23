@@ -3,7 +3,6 @@ body {
   text-align: center;
   margin: 0 auto;
   padding: 0 auto;
-  font-family: "Netflix Sans Light";
   color: white;
   overflow-x: hidden;
 }
@@ -18,4 +17,14 @@ button {
 a {
   text-decoration: none;
   color: white;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p {
+  font-family: "Netflix Sans Thin";
 }
