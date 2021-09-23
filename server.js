@@ -49,7 +49,7 @@ app.post("/create-checkout-session", async (req, res) => {
     });
 
     const session = await stripe.checkout.sessions.create({
-      customerEmail: planData.email,
+      customer_email: planData.email,
       line_items: [
         {
           price: price.id,
