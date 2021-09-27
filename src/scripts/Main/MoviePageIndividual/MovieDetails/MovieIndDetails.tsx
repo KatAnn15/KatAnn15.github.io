@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext} from "react";
+const {useContext} = React;
 import {GlobalContext} from "../../../Global/Context";
 import MovieItemVideo from '../movie_item_video';
 

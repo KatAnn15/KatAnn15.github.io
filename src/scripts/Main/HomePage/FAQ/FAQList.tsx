@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useCallback, useState, useEffect } from 'react';
+const { useCallback, useState, useEffect } = React;
 import firebase from "../../../Global/firebase_setup";
 import FAQItem from "./FAQItem";
 import "./FAQList.scss";

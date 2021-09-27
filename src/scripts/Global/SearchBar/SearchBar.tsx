@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+const { useState, useEffect } = React;
 import { Link, useHistory } from 'react-router-dom';
 import {key} from "../Context";
 import SearchItem from "./SearchItem";

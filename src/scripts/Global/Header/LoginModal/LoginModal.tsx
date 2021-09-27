@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useContext } from 'react';
+const { useState, useContext } = React;
 import {auth, googleAuthProvider, facebookAuthProvider} from "../../../Global/firebase_setup";
 import {GlobalContext} from "../../Context";
 import "./LoginModal.scss";

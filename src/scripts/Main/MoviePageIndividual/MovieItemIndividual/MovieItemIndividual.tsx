@@ -2,7 +2,7 @@ import * as React from 'react';
 import HeaderGlobal from '../../../Global/Header/HeaderGlobal/HeaderGlobal';
 import MovieItemDetails from '../MovieDetails/MovieIndDetails';
 import MovieItemSimilar from '../SimilarItems/SimilarItemsOne';
-import { useEffect, useCallback, useState } from 'react';
+const { useEffect, useCallback, useState } = React;
 import { useLocation } from 'react-router';
 import {key} from "../../../Global/Context";
 import "./MovieItemIndividual.scss";

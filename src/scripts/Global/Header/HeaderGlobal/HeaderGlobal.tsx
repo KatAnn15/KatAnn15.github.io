@@ -1,6 +1,6 @@
 import * as React from 'react';
 import  firebase from '../../firebase_setup';
-import { useCallback, useEffect, useState, useContext } from 'react';
+const { useCallback, useEffect, useState, useContext } = React;
 import {GlobalContext} from "../../Context";
 import {Link} from "react-router-dom";
 import SearchBar from '../../SearchBar/SearchBar';

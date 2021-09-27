@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from "react"
+const {useState} = React;
 
 interface FAQItemProps {
     question: string,

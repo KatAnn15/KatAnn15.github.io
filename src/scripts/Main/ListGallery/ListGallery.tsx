@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ListGalleryItem from './ListGalleryItem';
 import firebase from "../../Global/firebase_setup";
-import { useCallback, useEffect, useState } from 'react';
+const { useCallback, useEffect, useState } = React;
 import "./ListGallery.scss";
 
 interface ListGalleryProps {

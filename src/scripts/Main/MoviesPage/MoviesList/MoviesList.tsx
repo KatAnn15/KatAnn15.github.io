@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useCallback, useState, useEffect } from 'react';
+const { useCallback, useState, useEffect } = React;
 import MovieItem from './MovieItem';
 import {key} from "../../../Global/Context";
 import "./MoviesList.scss";

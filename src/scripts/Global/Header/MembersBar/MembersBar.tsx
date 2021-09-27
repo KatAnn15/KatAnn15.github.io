@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext, useState } from 'react';
+const { useContext, useState } = React;
 import {GlobalContext} from "../../Context";
 import {isMobile} from "react-device-detect";
 import "./MembersBar.scss";

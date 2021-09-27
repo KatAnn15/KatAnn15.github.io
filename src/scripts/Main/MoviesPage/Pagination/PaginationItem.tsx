@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState, useCallback, useEffect} from "react"
+const {useState, useCallback, useEffect} = React;
 
 interface PaginationItemProps {
     pageNum: number,

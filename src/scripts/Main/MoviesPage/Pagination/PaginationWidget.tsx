@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PaginationItem from "./PaginationItem";
-import {useState, useEffect, useCallback} from "react";
+const {useState, useEffect, useCallback} = React;
 import "./PaginationWidget.scss";
 
 interface PaginationListProps {
