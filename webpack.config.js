@@ -125,6 +125,8 @@ module.exports = (env, options) => {
       ],
       alias: {
         "@images": path.resolve(__dirname, "src/assets/images"),
+        "@redux": path.resolve(__dirname, "src/scripts/Redux"),
+        "@constants": path.resolve(__dirname, "src/scripts/Constants"),
       },
     },
     devServer: {

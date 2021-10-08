@@ -1,33 +1,35 @@
-import * as React from 'react';
-import PaginationItem from "./PaginationItem";
-const {useState, useEffect, useCallback} = React;
+import React, { useState, useEffect, useCallback } from "react";
+import PaginationItem from "./PaginationItem/PaginationItem";
+import {
+  PaginationListProps,
+  PaginationWidgetProps,
+} from "./PaginationWidgetTypes";
 import "./PaginationWidget.scss";
-
-interface PaginationListProps {
-    paginationList: (JSX.Element[] | null),
-    setPaginationList: React.Dispatch<React.SetStateAction<JSX.Element[] | null>>
-}
-
-interface PaginationWidgetProps {
-    setPage: React.Dispatch<React.SetStateAction<number>>,
-    page: number
-}
 
 const limit = 5;
 
-const PaginationWidget: React.FC<PaginationWidgetProps> = ({setPage, page}) => {
-    const [paginationList, setPaginationList] = useState<PaginationListProps["paginationList"]>(null);
+const PaginationWidget: React.FC<PaginationWidgetProps> = ({
+  setPage,
+  page,
+}) => {
+  const [paginationList, setPaginationList] =
+    useState<PaginationListProps["paginationList"]>(null);
 
-    const setPages = useCallback(() => {
-        const pagesArray = new Array(limit).fill(0).map((item, i) => item = i).map(item => <PaginationItem pageNum={item + 1} setPage={setPage}  page={page}/>);
-        setPaginationList(pagesArray)
-    }, [setPage, page]);
+  const setPages = useCallback(() => {
+    const pagesArray = new Array(limit)
+      .fill(0)
+      .map((item, i) => (item = i))
+      .map((item) => (
+        <PaginationItem pageNum={item + 1} setPage={setPage} page={page} />
+      ));
+    setPaginationList(pagesArray);
+  }, [setPage, page]);
 
-    useEffect(() => {setPages()}, [setPages])
+  useEffect(() => {
+    setPages();
+  }, [setPages]);
 
-    return (
-        <div className="pagination-widget_wrapper">{paginationList}</div>
-    )
-}
+  return <div className="pagination-widget_wrapper">{paginationList}</div>;
+};
 
 export default PaginationWidget;

@@ -50,8 +50,10 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@reduxjs/toolkit": "^1.6.2",
     "@types/jsdom": "^16.2.13",
     "@types/node": "^16.9.4",
+    "@types/react-redux": "^7.1.19",
     "@types/uuid": "^8.3.1",
     "axios": "^0.21.4",
     "body-parser": "^1.19.0",
@@ -64,8 +66,10 @@
     "react": "^17.0.2",
     "react-device-detect": "^1.17.0",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.5",
     "react-router": "^5.2.1",
     "react-stripe-checkout": "^2.6.3",
+    "redux-thunk": "^2.3.0",
     "stripe": "^8.176.0",
     "web-vitals": "^2.1.0"
   },
