@@ -1,6 +1,7 @@
 const path = require("path");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: ["@babel/polyfill", "./src/index.tsx"],
@@ -77,7 +78,9 @@ module.exports = {
   },
   resolve: {
     extensions: ["*", ".ts", ".tsx", ".js", ".jsx", ".png"],
-    plugins: [],
+    plugins: [
+      new HtmlWebpackPlugin({ template: "./src/templates/template.html" }),
+    ],
     alias: {
       "@images": path.resolve(__dirname, "src/assets/images"),
       "@redux": path.resolve(__dirname, "src/scripts/Redux"),
