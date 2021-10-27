@@ -78,9 +78,6 @@ module.exports = {
   },
   resolve: {
     extensions: ["*", ".ts", ".tsx", ".js", ".jsx", ".png"],
-    plugins: [
-      new HtmlWebpackPlugin({ template: "./src/templates/template.html" }),
-    ],
     alias: {
       "@images": path.resolve(__dirname, "src/assets/images"),
       "@redux": path.resolve(__dirname, "src/scripts/Redux"),
@@ -90,6 +87,12 @@ module.exports = {
       https: false,
     },
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/templates/template.html",
+      filename: "index.html",
+    }),
+  ],
   devServer: {
     static: "./dist",
   },
