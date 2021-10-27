@@ -1,20 +1,16 @@
 import React, { useState, useCallback, useEffect } from "react";
 import firebase from "../../../Global/Firebase/firebase_setup";
-import {
-  PricingPlansProps,
-  CurrentPlanProps,
-  PlanProps,
-} from "../PricingPlans.d";
+import { PricingPlansProps, CurrentPlanProps } from "../PricingPlans.d";
 import PricingPlanItem from "../PricingPlanItem/PricingPlanItem";
 import { Link } from "react-router-dom";
 import SliderChart from "../../Utils/SliderChart/SliderChart";
 import { features } from "../../Utils/SliderChart/ChartConsts";
+import { getSelector, callDispatch } from "@redux/Actions";
 import "./PricingPlans.scss";
 
 const PricingPlansPage: React.FC = () => {
   const [plans, setPlans] = useState<PricingPlansProps["plans"]>(null);
-  const [currentPlan, setCurrentPlan] =
-    useState<CurrentPlanProps["currentPlan"]>(null);
+  const currentPlan = getSelector("plan");
   const ref = firebase.firestore();
 
   const setPlansList: () => void = useCallback(async () => {
@@ -26,12 +22,8 @@ const PricingPlansPage: React.FC = () => {
         plansData.push(
           <PricingPlanItem
             data={itemData}
-            key={plansData.length}
-            planData={{
-              currentPlan: currentPlan,
-              setCurrentPlan: setCurrentPlan,
-            }}
             plans={plans}
+            key={plansData.length}
           />
         );
       });

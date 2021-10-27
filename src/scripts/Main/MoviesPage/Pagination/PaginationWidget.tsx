@@ -1,33 +1,21 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PaginationItem from "./PaginationItem/PaginationItem";
-import {
-  PaginationListProps,
-  PaginationWidgetProps,
-} from "./PaginationWidgetTypes";
+import { PaginationListProps } from "./PaginationWidgetTypes";
 import "./PaginationWidget.scss";
 
 const limit = 5;
 
-const PaginationWidget: React.FC<PaginationWidgetProps> = ({
-  setPage,
-  page,
-}) => {
+const PaginationWidget: React.FC = () => {
   const [paginationList, setPaginationList] =
     useState<PaginationListProps["paginationList"]>(null);
 
-  const setPages = useCallback(() => {
+  useEffect(() => {
     const pagesArray = new Array(limit)
       .fill(0)
       .map((item, i) => (item = i))
-      .map((item) => (
-        <PaginationItem pageNum={item + 1} setPage={setPage} page={page} />
-      ));
+      .map((item) => <PaginationItem pageNum={item + 1} key={item} />);
     setPaginationList(pagesArray);
-  }, [setPage, page]);
-
-  useEffect(() => {
-    setPages();
-  }, [setPages]);
+  }, [setPaginationList]);
 
   return <div className="pagination-widget_wrapper">{paginationList}</div>;
 };

@@ -1,46 +1,25 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import FilterCategoryItem from "./FilterCategoryItem/FilterCategoryItem";
-import { getGenres } from "./FilterCategoriesListActions";
-import { CatgoriesProps } from "./FilterCategoriesListTypes";
+import { getGenres } from "@redux/AsyncThunks/AsyncThunks";
+import { callDispatch, getSelectorWithStatus } from "@redux/Actions";
 
 const FilterCategoriesList: React.FC = () => {
-  const [categories, setCategories] = useState<CatgoriesProps["categories"]>([
-    null,
-  ]);
-
-  const renderCategories = useCallback(async () => {
-    const genres = await getGenres();
-
-    const categoriesNamesList = [
-      {
-        label: "Categories",
-        value: [
-          { val: "top_rated", lab: "Top Rated" },
-          { val: "popular", lab: "Popular" },
-          { val: "upcoming", lab: "Upcoming" },
-          { val: "now_playing", lab: "Now Playing" },
-        ],
-      },
-      { label: "Genres", value: genres },
-      {
-        label: "Include Adult",
-        value: [
-          { lab: "Include", val: true },
-          { lab: "Exclude", val: false },
-        ],
-      },
-    ];
-    const categoriesLists = categoriesNamesList.map((categoryItem, i) => (
-      <FilterCategoryItem data={categoryItem} key={"cat" + i} />
-    ));
-    setCategories(categoriesLists);
-  }, []);
+  const dispatch = callDispatch();
+  const genres = getSelectorWithStatus("genres");
 
   useEffect(() => {
-    renderCategories();
-  }, [renderCategories]);
+    dispatch(getGenres());
+  }, [getGenres]);
 
-  return <div className="filter-categories-list_wrapper">{categories}</div>;
+  return (
+    <div className="filter-categories-list_wrapper">
+      {genres.status === "fulfilled"
+        ? genres.value.map((categoryItem, i) => (
+            <FilterCategoryItem data={categoryItem} key={"cat" + i} />
+          ))
+        : null}
+    </div>
+  );
 };
 
 export default FilterCategoriesList;

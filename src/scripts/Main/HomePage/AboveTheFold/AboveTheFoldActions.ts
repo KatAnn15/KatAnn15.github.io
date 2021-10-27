@@ -1,4 +1,4 @@
-import { getFirestoreData } from "src/scripts/Global/Firebase/firebase_actions";
+import { getFirestoreData } from "../../../Global/Firebase/firebase_actions";
 import firebase from "../../../Global/Firebase/firebase_setup";
 const ref = firebase.firestore();
 

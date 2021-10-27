@@ -1,17 +1,24 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router";
 import PlanOverview from "./PlanOverview/PlanOverview";
-import { CountriesProps, PlanInfoProps } from "./Checkout.d";
-import { getSelector } from "@redux/Actions";
+import { PlanInfoProps } from "./Checkout.d";
+import {
+  getSelectorWithStatus,
+  getSelector,
+  callDispatch,
+} from "@redux/Actions";
 import "./CheckoutPage.scss";
+import { getCountries, postCheckout } from "@redux/AsyncThunks/AsyncThunks";
 
 const CheckoutPage: React.FC = () => {
   const location: { state: { planInfo: string } } = useLocation();
-  const [countries, setCountries] = useState<CountriesProps["countries"]>([]);
   const [planInfo, setPlanInfo] = useState<PlanInfoProps["planInfo"]>(null);
+  const checkoutStatus = getSelector("checkout");
   const loggedIn = getSelector("membersStatus");
+  const dispatch = callDispatch();
   const email = getSelector("email");
   const name = getSelector("name");
+  const countries = getSelectorWithStatus("countries");
 
   const setPlanData = () => {
     let planData: PlanInfoProps["planInfo"] = planInfo;
@@ -32,27 +39,17 @@ const CheckoutPage: React.FC = () => {
   const submitData = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
-    const formData = new FormData(form);
+    const formData: FormData = new FormData(form);
     formData.append("price", planInfo ? planInfo.price.toString() : "");
     formData.append("plan", planInfo ? planInfo.title.toString() : "");
-    fetch("https://" + window.location.hostname + "/create-checkout-session", {
-      method: "POST",
-      body: formData,
-    })
-      .then((resp) => resp.json())
-      .then((data) => window.open(data.url, "_blank"));
+    dispatch(postCheckout(formData)).then((data) =>
+      window.open(data.payload.url, "_blank")
+    );
   };
 
   const setCountriesList: () => void = useCallback(async () => {
     setPlanData();
-    const request = await fetch(
-      "https://" + window.location.hostname + "/countries"
-    );
-    const json: { data: { country: string }[] } = await request.json();
-    const data = json.data;
-    const keys = Object.keys(data);
-    const countriesList = keys.map((key) => data[key].country);
-    setCountries(countriesList);
+    dispatch(getCountries());
   }, []);
   useEffect(() => setCountriesList(), [setCountriesList]);
 
@@ -78,11 +75,15 @@ const CheckoutPage: React.FC = () => {
               placeholder="Full name"
             />
             <select id="countries" name="countries">
-              {countries.map((country, i) => (
-                <option value={country} key={i}>
-                  {country}
-                </option>
-              ))}
+              {countries.status === "fulfilled" ? (
+                Object.keys(countries.value.data).map((key, i) => (
+                  <option value={countries.value.data[key].country} key={i}>
+                    {countries.value.data[key].country}
+                  </option>
+                ))
+              ) : (
+                <option value="loading">Loading...</option>
+              )}
             </select>
             <input
               type="text"

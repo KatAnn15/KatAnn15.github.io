@@ -5,7 +5,7 @@ const axios = require("axios").default;
 const https = require("https");
 const formidableMiddleware = require("express-formidable");
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4000;
 
 const appMiddleware = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");

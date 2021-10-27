@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { getFirestoreData } from "src/scripts/Global/Firebase/firebase_actions";
+import { getFirestoreData } from "../../../Global/Firebase/firebase_actions";
 import FAQItem from "./FAQItem/FAQItem";
 import "./FAQList.scss";
 

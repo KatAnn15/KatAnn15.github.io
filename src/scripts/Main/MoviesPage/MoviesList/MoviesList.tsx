@@ -1,27 +1,32 @@
 import React, { useCallback, useState, useEffect } from "react";
 import MovieItem from "./MovieItem/MovieItem";
-import { key } from "@constants/Constants";
 import {
   MoviesListProps,
-  MoviesListStateProps,
   TransformStateProps,
   DisplayBackStateProps,
   DisplayForwardStateProps,
 } from "./MovieListTypes.d";
 import { slideListHandler } from "./MoviesListAction";
+import { useDispatch, useSelector } from "react-redux";
+import { getMovies } from "@redux/AsyncThunks/AsyncThunks";
 import "./MoviesList.scss";
 
 const innerWidth = window.innerWidth;
 let limit = 480;
 
 const MoviesList: React.FC<MoviesListProps> = ({ category }) => {
-  const [movies, pushMovies] = useState<MoviesListStateProps["movies"]>([null]);
   const [transform, setTransform] =
     useState<TransformStateProps["transform"]>(0);
   const [displayBack, setDisplayBack] =
     useState<DisplayBackStateProps["displayBack"]>("none");
   const [displayForward, setDisplayForward] =
     useState<DisplayForwardStateProps["displayForward"]>("flex");
+
+  const dispatch = useDispatch();
+  const moviesSelector = useSelector(
+    (state: { movies: { data: { category: string; items: any[] }[] } }) =>
+      state.movies.data
+  );
 
   const slideList = (tag: string) => {
     slideListHandler(
@@ -35,25 +40,13 @@ const MoviesList: React.FC<MoviesListProps> = ({ category }) => {
     );
   };
 
-  const getMovies = useCallback(async () => {
-    const popularMovies = await fetch(
-      `https://api.themoviedb.org/3/movie/${category}${key}`
-    );
-    const moviesData = await popularMovies.json();
-    const results: { title: string; id: string; poster_path: string }[] =
-      moviesData.results;
-    const moviesItems: JSX.Element[] = results.map((movie) => {
-      const { title, id, poster_path } = movie;
-      return (
-        <MovieItem title={title} id={id} poster_path={poster_path} key={id} />
-      );
-    });
-    pushMovies(moviesItems);
-  }, [category]);
+  const renderMovies = useCallback(() => {
+    dispatch(getMovies(category));
+  }, [category, getMovies]);
 
   useEffect(() => {
-    getMovies();
-  }, [getMovies]);
+    renderMovies();
+  }, [renderMovies]);
 
   return (
     <div className="movies-list_wrapper">
@@ -75,7 +68,22 @@ const MoviesList: React.FC<MoviesListProps> = ({ category }) => {
           id={`movies-container_${category}`}
           style={{ transform: `translateX(${transform}px)` }}
         >
-          {movies}
+          {moviesSelector.length > 0
+            ? moviesSelector.map((movie) => {
+                if (movie.category === category)
+                  return movie.items.map((item) => {
+                    const { title, id, poster_path } = item;
+                    return (
+                      <MovieItem
+                        title={title}
+                        id={id}
+                        poster_path={poster_path}
+                        key={id}
+                      />
+                    );
+                  });
+              })
+            : []}
         </div>
         <div
           className="movies-list_navigation movies-list_navigation__right"

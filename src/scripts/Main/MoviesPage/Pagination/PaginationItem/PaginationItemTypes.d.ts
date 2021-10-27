@@ -1,7 +1,5 @@
 export interface PaginationItemProps {
   pageNum: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  page: number;
 }
 
 export interface ColorProps {

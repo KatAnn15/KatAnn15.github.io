@@ -3,7 +3,7 @@ import ListGalleryItem from "./ListGalleryItem/ListGalleryItem";
 import firebase from "../../Global/Firebase/firebase_setup";
 const { useCallback, useEffect, useState } = React;
 import "./ListGallery.scss";
-import { getFirestoreData } from "src/scripts/Global/Firebase/firebase_actions";
+import { getFirestoreData } from "../../Global/Firebase/firebase_actions";
 
 interface ListGalleryProps {
   files: JSX.Element;

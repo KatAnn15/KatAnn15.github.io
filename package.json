@@ -4,8 +4,8 @@
   "description": "",
   "main": "dist/main.[contenthash].js",
   "scripts": {
-    "dev": "webpack serve --config webpack.config.js --mode=development --open",
-    "build": "webpack --config webpack.config.js --mode=production",
+    "dev": "webpack serve --config webpack.dev.js --open",
+    "build": "webpack --config webpack.prod.js",
     "start": "node server.js"
   },
   "engines": {
@@ -71,7 +71,8 @@
     "react-stripe-checkout": "^2.6.3",
     "redux-thunk": "^2.3.0",
     "stripe": "^8.176.0",
-    "web-vitals": "^2.1.0"
+    "web-vitals": "^2.1.0",
+    "webpack-merge": "^5.8.0"
   },
   "browser": {
     "fs": false,
