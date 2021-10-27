@@ -75,13 +75,9 @@ export const getCountries = createAsyncThunk(
   "countries/getCountries",
   async () => {
     const slug = window.location.hostname;
-    try {
-      const request = await axios.get("https://" + slug + "/countries");
-      const data = await request.data;
-      return data;
-    } catch (err) {
-      return err;
-    }
+    const request = await axios.get("https://" + slug + "/countries");
+    const data = await request.data;
+    return data;
   }
 );
 
