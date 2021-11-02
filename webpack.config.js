@@ -82,6 +82,7 @@ module.exports = {
       "@images": path.resolve(__dirname, "src/assets/images"),
       "@redux": path.resolve(__dirname, "src/scripts/Redux"),
       "@constants": path.resolve(__dirname, "src/scripts/Constants"),
+      "@firebaseMy": path.resolve(__dirname, "src/scripts/Global/Firebase"),
     },
     fallback: {
       https: false,

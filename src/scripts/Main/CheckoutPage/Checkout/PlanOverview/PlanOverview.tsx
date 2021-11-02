@@ -4,21 +4,20 @@ import { PlanInfoProps } from "../Checkout";
 import SliderChart from "../../../../Main/Utils/SliderChart/SliderChart";
 import "./PlanOverview.scss";
 import { features } from "../../../Utils/SliderChart/ChartConsts";
+import { getSelector } from "@redux/Actions";
 
-let emailField;
-
-const PlanOverview: React.FC<PlanOverviewProps> = ({ planInfo }) => {
-  const [planData, setPlanData] = useState<PlanInfoProps["planInfo"]>(null);
+const PlanOverview = () => {
+  const planInfo = getSelector("plan");
   const checkoutPlanStyle = {
     background: planInfo?.color,
   };
 
   const setPlanFeatures = () => {
-    if (planData) {
+    if (planInfo) {
       return features.map((feature, i) => (
         <SliderChart
           feature={feature}
-          currentPlan={planData}
+          currentPlan={planInfo}
           sliderWidth={150}
           mode="short"
           key={"ftr" + i}
@@ -27,12 +26,7 @@ const PlanOverview: React.FC<PlanOverviewProps> = ({ planInfo }) => {
     }
   };
 
-  const setPlanInfo: () => void = useCallback(() => {
-    emailField = document.getElementById("checkout-email") as HTMLInputElement;
-    if (planInfo) {
-      setPlanData(planInfo);
-    }
-  }, [planInfo, emailField]);
+  const setPlanInfo: () => void = useCallback(() => {}, [planInfo]);
   useEffect(() => setPlanInfo(), [setPlanInfo]);
 
   return (
@@ -40,12 +34,12 @@ const PlanOverview: React.FC<PlanOverviewProps> = ({ planInfo }) => {
       <h3 className="checkout-plan_title">Plan overview: </h3>
       <div className="checkout-plan_plan-info-wrapper">
         <div className="plan-details_container" style={checkoutPlanStyle}>
-          <h3 className="checkout_plan-name">{planData?.name}</h3>
+          <h3 className="checkout_plan-name">{planInfo?.name}</h3>
           <h3 className="checkout_plan-price">
             <span>$</span>
-            {planData?.price}
+            {planInfo?.price}
           </h3>
-          <h3 className="checkout_plan-title">{planData?.title}</h3>
+          <h3 className="checkout_plan-title">{planInfo?.title}</h3>
           <div className="plans-tech-fetaures_container">
             {setPlanFeatures()}
           </div>

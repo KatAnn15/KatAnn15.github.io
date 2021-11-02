@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { moviesFilterSlice } from "./AsyncSlices/ExpandFilterSlice";
+import { allPlansSlice } from "./AsyncSlices/GetAllPlans";
 import { countriesSlice } from "./AsyncSlices/GetCountriesSlice";
 import { genresSlice } from "./AsyncSlices/GetGenresSlice";
 import moviesSlice from "./AsyncSlices/GetMoviesSlice";
@@ -8,6 +9,7 @@ import { oneMovieSlice } from "./AsyncSlices/GetOneMovieSlice";
 import { searchSlice } from "./AsyncSlices/GetSearchMovies";
 import { similarSlice } from "./AsyncSlices/GetSimilarSlice";
 import { checkoutSlice } from "./AsyncSlices/PostCheckoutSlice";
+import { planMiddleware } from "./Middleware/PlanMiddleware";
 import {
   Email,
   EmailStatus,
@@ -34,9 +36,14 @@ const RootReducer = combineReducers({
   countries: countriesSlice.reducer,
   checkout: checkoutSlice.reducer,
   genres: genresSlice.reducer,
+  allPlans: allPlansSlice.reducer,
 });
 export const store = configureStore({
   reducer: RootReducer,
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware(),
+    planMiddleware,
+  ],
 });
 
 export type RootState = ReturnType<typeof RootReducer>;

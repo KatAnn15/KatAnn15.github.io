@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { key, setCategoriesList } from "@constants/Constants";
 import { MovieItemDetailsProps } from "../../Main/MoviePageIndividual/MovieDetails/MovieIndDetailsTypes";
 import axios from "axios";
-import https from "https";
+import firebase from "@firebaseMy/firebase_setup";
 
 export const getMovies = createAsyncThunk(
   "movies/getMovies",
@@ -102,4 +102,20 @@ export const getGenres = createAsyncThunk("genres/getGenres", async () => {
     val: genre.id.toString(),
   }));
   return setCategoriesList(allGenresNames);
+});
+
+export const getPlans = createAsyncThunk("plans/getPlans", async () => {
+  const ref = firebase.firestore();
+  const collection = await ref.collection("PricingPlans");
+  const promise = new Promise((resolve) => {
+    const plansData: any[] = [];
+    collection.onSnapshot((data) => {
+      data.forEach((snap) => {
+        const itemData: any = snap.data();
+        plansData.push(itemData);
+      });
+      resolve(plansData);
+    });
+  });
+  return promise;
 });

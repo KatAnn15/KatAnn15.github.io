@@ -5,33 +5,43 @@ import "./PricingPlanItem.scss";
 import { isMobile } from "react-device-detect";
 import { callDispatch, getSelector } from "@redux/Actions";
 import { setPlan } from "@redux/StateReducers";
+import { store } from "@redux/GlobalReducer";
 
-const PricingPlanItem: React.FC<PricingPlanItemProps> = ({ data, plans }) => {
+const PricingPlanItem: React.FC<PricingPlanItemProps> = ({
+  data,
+  plansLoc,
+}) => {
+  const { plansLocal, setPlansLocal } = plansLoc;
   const currentPlan = getSelector("plan");
   const dispatch = callDispatch();
   const { color, name, price, title, baseColor } = data;
 
-  const setPlanAsCurrent: () => void = () => {
-    dispatch(setPlan(data));
-    window.localStorage.setItem("Prototype-defaultPlan", JSON.stringify(data));
-  };
-
   const setPositions: () => number = useCallback(() => {
     let position: number = 0;
-    plans?.forEach((plan, i) => {
-      if (plan.props.data.name === data.name && !isMobile) {
-        switch (i) {
-          case 0:
-            return (position = 0);
-          case 1:
-            return (position = 300);
-          case 2:
-            return (position = -300);
+    if (plansLocal) {
+      plansLocal.forEach((plan, i) => {
+        if (plan.name === data.name && !isMobile) {
+          switch (i) {
+            case 0:
+              return (position = 0);
+            case 1:
+              return (position = 300);
+            case 2:
+              return (position = -300);
+          }
         }
-      }
-    });
+      });
+    }
     return position;
-  }, [plans, data]);
+  }, [data, plansLocal]);
+
+  const setPlans: () => void = useCallback(() => {
+    dispatch(setPlan(data));
+  }, [dispatch, setPlan]);
+
+  useEffect(() => {
+    setPositions();
+  }, [setPositions]);
 
   const itemStyle = {
     boxShadow: !currentPlan
@@ -86,7 +96,7 @@ const PricingPlanItem: React.FC<PricingPlanItemProps> = ({ data, plans }) => {
             ? "view-toggle-btn inactive-plans-btn"
             : "view-toggle-btn"
         }
-        onClick={setPlanAsCurrent}
+        onClick={setPlans}
         style={{ background: `linear-gradient(35deg,${baseColor})` }}
       >
         {currentPlan?.name === name ? (

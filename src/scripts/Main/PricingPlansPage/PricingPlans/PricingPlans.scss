@@ -51,25 +51,7 @@
     .current-plan_title {
       font-size: 24px;
     }
-    .current-plan_tech-info {
-      display: flex;
-      flex-direction: column;
-      padding-top: 20px;
-      .info-item-container {
-        display: flex;
-        justify-content: space-between;
-        font-weight: 100;
-        color: rgb(172, 170, 170);
-        font-size: 14px;
-        .feature-wrapper {
-          display: flex;
-          justify-content: space-between;
-          width: 340px;
-          color: white;
-          font-size: 16px;
-        }
-      }
-    }
+
     .plan-checkout_btn {
       position: absolute;
       right: 50%;
@@ -115,24 +97,7 @@
       .current-plan_title {
         font-size: 24px;
       }
-      .current-plan_tech-info {
-        display: flex;
-        flex-direction: column;
-        padding-top: 0;
-        padding-bottom: 50px;
-        width: 90vw;
-        .info-item-container {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          font-size: 14px;
-          .feature-wrapper {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-          }
-        }
-      }
+
       .plan-checkout_btn {
         position: relative;
         right: 0;

@@ -1,3 +1,5 @@
+import { PlanProps } from "../Main/PricingPlansPage/PricingPlans";
+
 export interface ReducerActionTypeString {
   action: {
     type: string;

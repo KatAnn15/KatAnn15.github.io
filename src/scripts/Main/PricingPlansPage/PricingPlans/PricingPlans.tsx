@@ -1,77 +1,55 @@
-import React, { useState, useCallback, useEffect } from "react";
-import firebase from "../../../Global/Firebase/firebase_setup";
-import { PricingPlansProps, CurrentPlanProps } from "../PricingPlans.d";
+import React, { useEffect, useState } from "react";
 import PricingPlanItem from "../PricingPlanItem/PricingPlanItem";
 import { Link } from "react-router-dom";
-import SliderChart from "../../Utils/SliderChart/SliderChart";
-import { features } from "../../Utils/SliderChart/ChartConsts";
-import { getSelector, callDispatch } from "@redux/Actions";
+import { callDispatch, getSelector } from "@redux/Actions";
 import "./PricingPlans.scss";
+import { getPlans } from "@redux/AsyncThunks/AsyncThunks";
+import PricingPlansFeatures from "./PricingPlanFeatures/PricingPlanFeatures";
+import { PricingPlanItemProps } from "../PricingPlans";
 
 const PricingPlansPage: React.FC = () => {
-  const [plans, setPlans] = useState<PricingPlansProps["plans"]>(null);
+  const dispatch = callDispatch();
+  const plans = getSelector("allPlans");
+  const [plansLocal, setPlansLocal] =
+    useState<PricingPlanItemProps["plansLoc"]["plansLocal"]>(null);
   const currentPlan = getSelector("plan");
-  const ref = firebase.firestore();
 
-  const setPlansList: () => void = useCallback(async () => {
-    const collection = await ref.collection("PricingPlans");
-    const plansData: JSX.Element[] = [];
-    collection.onSnapshot((data) => {
-      data.forEach((snap) => {
-        const itemData: any = snap.data();
-        plansData.push(
-          <PricingPlanItem
-            data={itemData}
-            plans={plans}
-            key={plansData.length}
-          />
-        );
-      });
-      setPlans(plansData);
-    });
+  useEffect(() => {
+    if (!plans) {
+      dispatch(getPlans());
+    }
     if (currentPlan && plans) {
-      const name = currentPlan.name;
-      const sortedPlans = plans.sort((first, sec) =>
-        first.props.data.name === name
+      const array = plans;
+      const sorted = [...array].sort((first, sec) =>
+        first.name === currentPlan.name
           ? -1
-          : sec.props.data.name === name
+          : sec.name === currentPlan.name
           ? 1
           : 0
       );
-      setPlans(sortedPlans);
+      setPlansLocal(sorted);
     }
-  }, [ref, currentPlan]);
-
-  const setTechFeatures = () => {
-    if (currentPlan)
-      return features.map((feature, i) => {
-        return (
-          <div className="info-item-container" key={i}>
-            <p className="current-plan_feature-title">
-              {feature["value"] === "devices"
-                ? "Watch on your TV, computer, mobile phone and tablet"
-                : feature["label"]}
-            </p>
-            <SliderChart
-              feature={feature}
-              sliderWidth={250}
-              currentPlan={currentPlan}
-              mode="full"
-            />
-          </div>
-        );
-      });
-  };
-
-  useEffect(() => setPlansList(), [setPlansList]);
+  }, [currentPlan, plans]);
 
   return (
     <div className="pricing-plans_wrapper">
-      <div className="plans_container">{plans}</div>
-      {currentPlan ? (
+      <div className="plans_container">
+        {plans && currentPlan
+          ? plans.map((onePlan, i) => (
+              <PricingPlanItem
+                data={onePlan}
+                plansLoc={{ plansLocal, setPlansLocal }}
+                key={i}
+              />
+            ))
+          : null}
+      </div>
+      {plans && currentPlan ? (
         <div className="current-plan-info">
           <p className="current-plan_title">{currentPlan?.title}</p>
-          <div className="current-plan_tech-info">{setTechFeatures()}</div>
+          <div className="current-plan_tech-info">
+            {<PricingPlansFeatures />}
+          </div>
           <Link
             to={{
               pathname: "/checkout",

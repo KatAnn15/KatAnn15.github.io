@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
-import { getMovies, getOneMovie } from "@redux/AsyncThunks/AsyncThunks";
+import { getPlans } from "@redux/AsyncThunks/AsyncThunks";
 import { useDispatch } from "react-redux";
 import { getSelector } from "@redux/Actions";
 
 const TestComponent: React.FC = () => {
   const dispatch = useDispatch();
-  const movie = getSelector("movie");
+  const plans = getSelector("allPlans");
+  const plan = getSelector("plan");
   useEffect(() => {
-    dispatch(getOneMovie(610253));
-  }, [getMovies]);
+    dispatch(getPlans());
+  }, [getPlans]);
   return (
     <div className="test">
-      <p>{JSON.stringify(movie)}</p>
+      <p>{JSON.stringify(plan)}</p>
     </div>
   );
 };

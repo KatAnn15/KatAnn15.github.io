@@ -1,10 +1,5 @@
 import React from "react";
 
-export interface PricingPlansProps {
-  plans: null | JSX.Element[];
-  setPlans: React.Dispatch<React.SetStateAction<null | JSX.Element[]>>;
-}
-
 export interface PlanProps {
   plan: {
     title: string;
@@ -28,7 +23,10 @@ export interface CurrentPlanProps {
 
 export interface PricingPlanItemProps {
   data: PlanProps["plan"];
-  plans: PricingPlansProps["plans"];
+  plansLoc: {
+    plansLocal: any[] | null;
+    setPlansLocal: React.Dispatch<React.SetStateAction<any[] | null>>;
+  };
 }
 
 export interface PricingItemCardProps {

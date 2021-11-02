@@ -13,7 +13,6 @@ import { getCountries, postCheckout } from "@redux/AsyncThunks/AsyncThunks";
 const CheckoutPage: React.FC = () => {
   const location: { state: { planInfo: string } } = useLocation();
   const [planInfo, setPlanInfo] = useState<PlanInfoProps["planInfo"]>(null);
-  const checkoutStatus = getSelector("checkout");
   const loggedIn = getSelector("membersStatus");
   const dispatch = callDispatch();
   const email = getSelector("email");
@@ -97,7 +96,7 @@ const CheckoutPage: React.FC = () => {
           </form>
         </div>
         <div className="payment-widget">
-          <PlanOverview planInfo={planInfo} />
+          <PlanOverview />
         </div>
       </div>
     </div>

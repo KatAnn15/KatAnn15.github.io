@@ -19,7 +19,13 @@ export const planSlice = createSlice({
   initialState: initPlan,
   reducers: {
     setPlan: (state: { value: any }, action) => {
-      state.value = action.payload;
+      if (action.payload) {
+        state.value = action.payload;
+        window.localStorage.setItem(
+          "Prototype-defaultPlan",
+          JSON.stringify(action.payload)
+        );
+      }
     },
   },
 });
