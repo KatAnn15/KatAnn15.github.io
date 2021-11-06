@@ -1,6 +1,5 @@
-import { setEmailValue, setMemberStatus, setNameValue } from "@redux/Reducers";
+import { setMemberStatus } from "@redux/UserReducers";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import {
   LoginModalProps,
   ModalStateProps,
@@ -11,6 +10,7 @@ import {
   emailPasswordAuthenticationHandler,
   handleLoginClick,
 } from "./LoginModalActions";
+import { callDispatch } from "@redux/Actions";
 
 const LoginModal: React.FC<LoginModalProps> = ({ setModalVisibility }) => {
   const [modalState, setModalState] =
@@ -18,6 +18,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ setModalVisibility }) => {
   const [errorMessage, setErrorMessage] = useState<
     ErrorMessageProps["errorMessage"]
   >({ visible: false, code: "" });
+  const dispatch = callDispatch();
 
   const modalStateHandler: () => void = () => {
     if (modalState === "login") {
@@ -26,17 +27,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ setModalVisibility }) => {
       setModalState("login");
     }
   };
-  const dispatch = useDispatch();
 
-  const handleUserSuccess: (email: string, name: string) => void = (
-    email: string,
-    name: string
-  ) => {
-    window.localStorage.setItem("appAuth-email", email);
-    window.localStorage.setItem("appAuth-name", name);
-    dispatch(setEmailValue(email));
+  const handleUserSuccess: () => void = () => {
     dispatch(setMemberStatus(true));
-    dispatch(setNameValue(name));
     setErrorMessage({ visible: false, code: "" });
     setModalVisibility(false);
   };

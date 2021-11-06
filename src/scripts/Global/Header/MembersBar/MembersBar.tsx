@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
-import { setEmailValue, setMemberStatus, setNameValue } from "@redux/Reducers";
+import { setMemberStatus } from "@redux/UserReducers";
+import { getAuth } from "@firebase/auth";
 import { getSelector } from "@redux/Actions";
 import { useDispatch } from "react-redux";
 import "./MembersBar.scss";
-import { getMemberInfoFromCache } from "./MembersBarActions";
 import { MembersBarProps, LoginDisplayProps } from "./MembersBarTypes";
 
 const MembersBar: React.FC<MembersBarProps> = ({ setModalVisibility }) => {
+  const user = getSelector("user");
   const memberStatus = getSelector("membersStatus");
-  const memberName = getSelector("name");
   const dispatch = useDispatch();
 
   const [mLoginDisplay, setMLoginDisplay] =
@@ -18,8 +18,6 @@ const MembersBar: React.FC<MembersBarProps> = ({ setModalVisibility }) => {
   const setUserStatus = () => {
     if (memberStatus) {
       dispatch(setMemberStatus(false));
-      window.localStorage.removeItem("appAuth-email");
-      window.localStorage.removeItem("appAuth-name");
     } else {
       setModalVisibility(true);
     }
@@ -32,16 +30,17 @@ const MembersBar: React.FC<MembersBarProps> = ({ setModalVisibility }) => {
         : setMLoginDisplay("none");
     }
   };
-  const setDefaultStatuses = async () => {
-    const data = await getMemberInfoFromCache();
-    if (data) {
-      dispatch(setEmailValue(data[0]));
-      dispatch(setNameValue(data[1]));
-      dispatch(setMemberStatus(true));
-    }
-  };
   useEffect(() => {
-    setDefaultStatuses();
+    if (!user) {
+      const auth = getAuth();
+      auth.onAuthStateChanged(() => {
+        if (auth.currentUser) {
+          dispatch(setMemberStatus(true));
+        } else {
+          dispatch(setMemberStatus(false));
+        }
+      });
+    }
   });
 
   return (
@@ -51,7 +50,7 @@ const MembersBar: React.FC<MembersBarProps> = ({ setModalVisibility }) => {
           className="member_welcome-message"
           onClick={toggleLoginBtnForMobile}
         >
-          Welcome, {memberName}
+          Welcome, {user?.displayName}
         </button>
       ) : null}
       <button

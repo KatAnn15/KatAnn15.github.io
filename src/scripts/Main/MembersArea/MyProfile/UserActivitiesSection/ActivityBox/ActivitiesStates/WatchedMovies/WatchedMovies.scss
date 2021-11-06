@@ -1,0 +1,18 @@
+.watched-movies-wrapper {
+  width: 100%;
+  text-align: left;
+  .watched-movies_title {
+    font-size: 26px;
+  }
+  .watched-movies_container {
+    display: flex;
+    flex-wrap: wrap;
+    .watched-movie-link {
+      img {
+        width: 250px;
+        height: 300px;
+        object-fit: cover;
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ import {
 import { getSelector } from "@redux/Actions";
 import { useDispatch } from "react-redux";
 import "./HeaderGlobal.scss";
-import { setMemberStatus } from "@redux/Reducers";
+import { setMemberStatus } from "@redux/UserReducers";
 
 const HeaderGlobal: React.FC = () => {
   const [logo, updateLogo] = useState<HeaderGlobalProps["logo"]>("");
@@ -22,7 +22,6 @@ const HeaderGlobal: React.FC = () => {
     useState<MembersMoreToggle["areaExpanded"]>(false);
   const loggedIn = getSelector("membersStatus");
   const subscribed = getSelector("subscribedStatus");
-  const name = getSelector("name");
   const dispatch = useDispatch();
 
   const fetchLogo = useCallback(async () => {

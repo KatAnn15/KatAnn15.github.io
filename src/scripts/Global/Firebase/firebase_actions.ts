@@ -19,3 +19,18 @@ export function getFirestoreData(collection: string): Promise<any[]> {
     });
   });
 }
+
+export async function getFirestoreDataMatch(
+  collection: string,
+  toMatch: string | firebase.default.firestore.FieldPath,
+  value: string
+): Promise<any[]> {
+  const ref = db.collection(collection);
+  const data = await ref.where(toMatch, "==", value).get();
+  const itemData: any[] = [];
+  data.forEach((item) => {
+    const itemdata = item.data();
+    itemData.push(itemdata);
+  });
+  return itemData;
+}

@@ -1,0 +1,18 @@
+.favorites-wrapper {
+  width: 100%;
+  text-align: left;
+  .favorites_title {
+    font-size: 26px;
+  }
+  .favorites_container {
+    display: flex;
+    flex-wrap: wrap;
+    .favorite-link {
+      img {
+        width: 250px;
+        height: 300px;
+        object-fit: cover;
+      }
+    }
+  }
+}

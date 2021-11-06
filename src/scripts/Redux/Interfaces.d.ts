@@ -9,6 +9,15 @@ export interface ReducerActionTypeString {
     value: string | null;
   };
 }
+export interface ReducerActionTypeUser {
+  action: {
+    type: string;
+    payload: User | null;
+  };
+  value: {
+    value: User | null;
+  };
+}
 
 export interface ReducerActionTypeBoolean {
   action: {

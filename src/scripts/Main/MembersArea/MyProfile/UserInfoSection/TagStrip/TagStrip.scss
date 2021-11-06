@@ -1,0 +1,31 @@
+.tag-strip-wrapper {
+  width: 100%;
+  height: 120px;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(224, 160, 160, 0.527);
+  text-align: left;
+  padding: 0 120px;
+  .tag-header {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+    font-size: 34px;
+    margin: 0;
+    line-height: 55px;
+    margin-top: 10px;
+  }
+  .tag-body {
+    margin: 0;
+    width: 70%;
+    font-size: 14px;
+  }
+  .tag-icons {
+    position: absolute;
+    width: 300px;
+    right: 120px;
+    bottom: 0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -1,4 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { memberProfileSlice } from "./AsyncSlices/AsyncSliceMembers/SetMemberProfileSlice";
 import { moviesFilterSlice } from "./AsyncSlices/ExpandFilterSlice";
 import { allPlansSlice } from "./AsyncSlices/GetAllPlans";
 import { countriesSlice } from "./AsyncSlices/GetCountriesSlice";
@@ -9,22 +10,22 @@ import { oneMovieSlice } from "./AsyncSlices/GetOneMovieSlice";
 import { searchSlice } from "./AsyncSlices/GetSearchMovies";
 import { similarSlice } from "./AsyncSlices/GetSimilarSlice";
 import { checkoutSlice } from "./AsyncSlices/PostCheckoutSlice";
+import { memberMiddleware } from "./Middleware/MemberMiddleware";
 import { planMiddleware } from "./Middleware/PlanMiddleware";
+import { SubscribedStatus, MemberStatus, User } from "./UserReducers";
 import {
-  Email,
-  EmailStatus,
-  Name,
-  SubscribedStatus,
-  MemberStatus,
-} from "./Reducers";
-import { pageSlice, planSlice } from "./StateReducers";
+  pageSlice,
+  planSlice,
+  profileCategorySlice,
+  profilleActivitiesSlice,
+} from "./StateReducers";
+import { memeberActivityMiddleware } from "./Middleware/MemberActivityMiddleware";
 
 const RootReducer = combineReducers({
-  name: Name.reducer,
-  email: Email.reducer,
-  emailStatus: EmailStatus.reducer,
+  user: User.reducer,
   subscribedStatus: SubscribedStatus.reducer,
   membersStatus: MemberStatus.reducer,
+  updateProfile: memberProfileSlice.reducer,
   movies: moviesSlice.reducer,
   page: pageSlice.reducer,
   fiterToggle: moviesFilterSlice.reducer,
@@ -37,12 +38,16 @@ const RootReducer = combineReducers({
   checkout: checkoutSlice.reducer,
   genres: genresSlice.reducer,
   allPlans: allPlansSlice.reducer,
+  profileCategory: profileCategorySlice.reducer,
+  profileActivities: profilleActivitiesSlice.reducer,
 });
 export const store = configureStore({
   reducer: RootReducer,
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware(),
     planMiddleware,
+    memberMiddleware,
+    memeberActivityMiddleware,
   ],
 });
 

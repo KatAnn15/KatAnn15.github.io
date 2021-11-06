@@ -30,5 +30,33 @@ export const planSlice = createSlice({
   },
 });
 
+const initProfileCat = {
+  value: null,
+};
+
+export const profileCategorySlice = createSlice({
+  name: "profileCategory",
+  initialState: initProfileCat,
+  reducers: {
+    setProfileCat: (state, action) => {
+      state.value = action.payload;
+    },
+  },
+});
+
+export const profilleActivitiesSlice = createSlice({
+  name: "profileActivities",
+  initialState: {
+    value: {},
+  },
+  reducers: {
+    setActivities: (state, action) => {
+      state.value = action.payload;
+    },
+  },
+});
+
 export const { setPage } = pageSlice.actions;
 export const { setPlan } = planSlice.actions;
+export const { setProfileCat } = profileCategorySlice.actions;
+export const { setActivities } = profilleActivitiesSlice.actions;

@@ -18,10 +18,7 @@ export const emailPasswordAuthenticationHandler: (
         (passwordField as HTMLInputElement).value
       );
       if (newMember.user && newMember.user.email) {
-        handleUserSuccess(
-          newMember.user.email,
-          newMember.user.email.split("@")[0]
-        );
+        handleUserSuccess();
       }
     } catch (err) {
       setErrorMessage({ visible: true, code: "" + err });
@@ -32,11 +29,9 @@ export const emailPasswordAuthenticationHandler: (
         (emailField as HTMLInputElement).value,
         (passwordField as HTMLInputElement).value
       );
-      if (loggedInMember.user && loggedInMember.user.email)
-        handleUserSuccess(
-          loggedInMember.user.email,
-          loggedInMember.user.email.split("@")[0]
-        );
+      if (loggedInMember.user && loggedInMember.user.email) {
+        handleUserSuccess();
+      }
     } catch (err) {
       setErrorMessage({ visible: true, code: "" + err });
     }
@@ -59,7 +54,7 @@ async function signInUser(provider, handleUserSuccess, setErrorMessage) {
   try {
     const resp = await auth.signInWithPopup(provider);
     if (resp.user && resp.user.email && resp.user.displayName) {
-      handleUserSuccess(resp.user.email, resp.user.displayName);
+      handleUserSuccess();
     }
   } catch (err) {
     setErrorMessage({ visible: true, code: "Error here: " + err });

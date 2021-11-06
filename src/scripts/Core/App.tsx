@@ -11,6 +11,7 @@ import ThankYouPage from "../Main/CheckoutPage/ThankYouPage/ThankYouPage";
 import "./base.scss";
 import "./global.scss";
 import TestComponent from "../Main/Test/Test";
+import MyProfile from "../Main/MembersArea/MyProfile/MyProfile";
 
 const App: React.FC = () => {
   return (
@@ -36,6 +37,7 @@ const App: React.FC = () => {
             path="/stripe-thank-you-page"
             component={ThankYouPage}
           ></Route>
+          <Route exact path="/my-profile" component={MyProfile}></Route>
           <Route exact path="/test" component={TestComponent}></Route>
         </Switch>
       </HashRouter>
