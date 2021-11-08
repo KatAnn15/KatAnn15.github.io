@@ -5,6 +5,8 @@ import MediaFiles from "./ActivitiesStates/MediaFiles/MediaFiles";
 import WatchedMovies from "./ActivitiesStates/WatchedMovies/WatchedMovies";
 import "./ActivityBox.scss";
 import Favorites from "./ActivitiesStates/Favorites/Favorites";
+import Contacts from "./ActivitiesStates/Contacts/Contacts";
+import ProfilePlans from "./ActivitiesStates/Plans/Plans";
 
 const ActivityBox: React.FC = () => {
   const currentCat = getSelector("profileCategory");
@@ -28,6 +30,14 @@ const ActivityBox: React.FC = () => {
         case "Favorites":
           setDisplayElement(
             <Favorites data={profileActivity[currentCat][0]} />
+          );
+          break;
+        case "Contacts":
+          setDisplayElement(<Contacts data={profileActivity[currentCat][0]} />);
+          break;
+        case "Plans":
+          setDisplayElement(
+            <ProfilePlans data={profileActivity[currentCat][0]} />
           );
           break;
       }

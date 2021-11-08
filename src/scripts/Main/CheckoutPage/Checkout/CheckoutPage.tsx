@@ -1,53 +1,75 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useLocation } from "react-router";
+import React, { useEffect, useCallback } from "react";
 import PlanOverview from "./PlanOverview/PlanOverview";
-import { PlanInfoProps } from "./Checkout.d";
 import {
   getSelectorWithStatus,
   getSelector,
   callDispatch,
 } from "@redux/Actions";
 import "./CheckoutPage.scss";
-import { getCountries, postCheckout } from "@redux/AsyncThunks/AsyncThunks";
+import {
+  getCountries,
+  postCheckout,
+  getPlans,
+  setFirestoreData,
+} from "@redux/AsyncThunks/AsyncThunks";
+import { setProfileCat } from "@redux/StateReducers";
+import { getAuth } from "firebase/auth";
+import { setMemberStatus, setSubscribedStatus } from "@redux/UserReducers";
+import { PlanProps } from "../../PricingPlansPage/PricingPlans";
 
 const CheckoutPage: React.FC = () => {
-  const location: { state: { planInfo: string } } = useLocation();
-  const [planInfo, setPlanInfo] = useState<PlanInfoProps["planInfo"]>(null);
   const loggedIn = getSelector("membersStatus");
   const dispatch = callDispatch();
-  const email = getSelector("email");
-  const name = getSelector("name");
   const countries = getSelectorWithStatus("countries");
-
-  const setPlanData = () => {
-    let planData: PlanInfoProps["planInfo"] = planInfo;
-    if (location.state) {
-      planData = JSON.parse(location.state.planInfo);
-    } else {
-      const defaultPlanStr = window.localStorage.getItem(
-        "Prototype-defaultPlan"
-      );
-      if (defaultPlanStr) {
-        const defaultPlanObj = JSON.parse(defaultPlanStr);
-        planData = defaultPlanObj;
-      }
-    }
-    setPlanInfo(planData);
-  };
+  const user = getSelector("user");
+  const plan = getSelector("plan");
+  const activities = getSelector("profileActivities");
 
   const submitData = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData: FormData = new FormData(form);
-    formData.append("price", planInfo ? planInfo.price.toString() : "");
-    formData.append("plan", planInfo ? planInfo.title.toString() : "");
-    dispatch(postCheckout(formData)).then((data) =>
-      window.open(data.payload.url, "_blank")
-    );
+    formData.append("price", plan ? plan.price.toString() : "");
+    formData.append("plan", plan ? plan.title.toString() : "");
+    dispatch(postCheckout(formData)).then((data) => {
+      if (data.payload) {
+        data.payload ? window.open(data.payload.url, "_blank") : null;
+        submitPlanToDb();
+      }
+    });
+  };
+
+  const submitPlanToDb = () => {
+    const currentPlans = activities["Plans"][0];
+    let newPlans: PlanProps["plan"][] = [];
+    if (currentPlans) {
+      newPlans = [...currentPlans.plans];
+    }
+    newPlans = newPlans.concat([plan]);
+    dispatch(
+      setFirestoreData({
+        uid: user.uid,
+        collection: "Plans",
+        files: { plans: newPlans },
+      })
+    )
+      .then(() => dispatch(setProfileCat("Plans")))
+      .then(() => dispatch(setSubscribedStatus(true)));
   };
 
   const setCountriesList: () => void = useCallback(async () => {
-    setPlanData();
+    if (!user) {
+      const auth = getAuth();
+      auth.onAuthStateChanged(() => {
+        if (auth.currentUser) {
+          dispatch(setMemberStatus(true));
+          dispatch(setProfileCat("Plans"));
+        } else {
+          dispatch(setMemberStatus(false));
+        }
+      });
+    }
+    dispatch(getPlans());
     dispatch(getCountries());
   }, []);
   useEffect(() => setCountriesList(), [setCountriesList]);
@@ -63,14 +85,16 @@ const CheckoutPage: React.FC = () => {
               name="email"
               id="checkout-email"
               type="email"
-              defaultValue={loggedIn && email ? email : ""}
+              defaultValue={loggedIn && user?.email ? user.email : ""}
               placeholder="Enter your email"
             />
             <input
               className="checkout-name"
               name="name"
               type="text"
-              defaultValue={loggedIn && name ? name : ""}
+              defaultValue={
+                loggedIn && user?.displayName ? user.displayName : ""
+              }
               placeholder="Full name"
             />
             <select id="countries" name="countries">
@@ -97,6 +121,7 @@ const CheckoutPage: React.FC = () => {
         </div>
         <div className="payment-widget">
           <PlanOverview />
+          <button onClick={submitPlanToDb}>Test Plan Submission</button>
         </div>
       </div>
     </div>

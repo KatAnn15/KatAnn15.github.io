@@ -3,6 +3,7 @@ export interface WatchedMoviesTypes {
     movies: {
       id: string;
       poster: string;
+      _createdDate: string;
     }[];
   };
 }

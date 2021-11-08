@@ -1,0 +1,51 @@
+@mixin afters {
+  width: 100px;
+  height: 20px;
+  opacity: 0;
+  margin-left: 4px;
+  border-radius: 3px;
+}
+.movie-activity-wrapper {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 2;
+  .watchedmovies-toggle-wrapper {
+    i {
+      font-size: 26px;
+    }
+    margin-bottom: 10px;
+    display: flex;
+    cursor: pointer;
+    &::after {
+      @include afters;
+      content: "Watched";
+      background-color: rgba(255, 0, 0, 0.349);
+    }
+    &:hover::after {
+      opacity: 0.7;
+    }
+    &:hover {
+      text-shadow: 0 0 4px rgb(202, 2, 2);
+    }
+  }
+  .favorites-toggle-wrapper {
+    i {
+      font-size: 26px;
+    }
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 7px;
+    &::after {
+      @include afters;
+      content: "Liked";
+      background-color: rgba(115, 255, 0, 0.349);
+    }
+    &:hover::after {
+      opacity: 0.7;
+    }
+    &:hover {
+      text-shadow: 0 0 4px rgb(78, 160, 1);
+    }
+  }
+}

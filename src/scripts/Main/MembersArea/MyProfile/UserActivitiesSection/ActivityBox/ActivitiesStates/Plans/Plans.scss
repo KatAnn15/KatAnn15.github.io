@@ -1,0 +1,34 @@
+.profile-plans-wrapper {
+  width: 100%;
+  text-align: left;
+  .profile-plans_title {
+    font-size: 26px;
+  }
+  .profile-plans_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-rows: auto;
+    grid-gap: 10px;
+    .profile-plan-wrapper {
+      height: 300px;
+      border-radius: 4px;
+      overflow: hidden;
+      .profile-plan_container {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        padding: 10px 5px;
+        .profile-plan_features {
+          width: 100%;
+          padding: 0;
+          li {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+  .no-plan-wrapper {
+    position: relative;
+  }
+}

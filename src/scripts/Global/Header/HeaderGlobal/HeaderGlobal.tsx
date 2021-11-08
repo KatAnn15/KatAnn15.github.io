@@ -4,25 +4,23 @@ import { Link } from "react-router-dom";
 import SearchBar from "../../SearchBar/SearchBar";
 import LoginModal from "../LoginModal/LoginModal";
 import { isMobile } from "react-device-detect";
-import {
-  HeaderGlobalProps,
-  ModalVisibleProps,
-  MembersMoreToggle,
-} from "./HeaderGlobalTypes";
+import { HeaderGlobalProps, MembersMoreToggle } from "./HeaderGlobalTypes";
 import { getSelector } from "@redux/Actions";
 import { useDispatch } from "react-redux";
 import "./HeaderGlobal.scss";
 import { setMemberStatus } from "@redux/UserReducers";
+import { initUser } from "@constants/Functions";
+import { setModalVisibility } from "@redux/StateReducers";
 
 const HeaderGlobal: React.FC = () => {
   const [logo, updateLogo] = useState<HeaderGlobalProps["logo"]>("");
-  const [modalVisible, setModalVisibility] =
-    useState<ModalVisibleProps["modalVisible"]>(false);
   const [areaExpanded, setAreaExpanded] =
     useState<MembersMoreToggle["areaExpanded"]>(false);
   const loggedIn = getSelector("membersStatus");
   const subscribed = getSelector("subscribedStatus");
   const dispatch = useDispatch();
+  const user = getSelector("user");
+  const modalVisible = getSelector("login");
 
   const fetchLogo = useCallback(async () => {
     const ref = firebase.storage().ref();
@@ -36,7 +34,7 @@ const HeaderGlobal: React.FC = () => {
       dispatch(setMemberStatus(false));
       window.localStorage.removeItem("appAuth-email");
     } else {
-      setModalVisibility(true);
+      dispatch(setModalVisibility(true));
     }
   };
 
@@ -46,6 +44,7 @@ const HeaderGlobal: React.FC = () => {
 
   useEffect(() => {
     fetchLogo();
+    initUser();
   }, [fetchLogo]);
 
   return (
@@ -59,8 +58,9 @@ const HeaderGlobal: React.FC = () => {
         style={{ display: isMobile && !areaExpanded ? "none" : "flex" }}
       >
         <span>
-          {" "}
-          {loggedIn ? `Welcome, ${name}!` : "UNLIMITED TV SHOWS & MOVIES"}
+          {loggedIn
+            ? `Welcome, ${user?.displayName}!`
+            : "UNLIMITED TV SHOWS & MOVIES"}
         </span>
         {!subscribed && loggedIn ? (
           <Link to={"/pricing-plans"}>
@@ -79,9 +79,7 @@ const HeaderGlobal: React.FC = () => {
           More
         </button>
       ) : null}
-      {modalVisible ? (
-        <LoginModal setModalVisibility={setModalVisibility} />
-      ) : null}
+      {modalVisible ? <LoginModal /> : null}
     </div>
   );
 };

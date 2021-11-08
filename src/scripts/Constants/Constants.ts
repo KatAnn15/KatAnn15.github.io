@@ -31,3 +31,34 @@ export const setCategoriesList = (
     },
   ];
 };
+
+export const videoExtensions = [
+  ".webm",
+  ".mkv",
+  ".flv",
+  ".gif",
+  ".gifv",
+  ".mng",
+  ".avi",
+  ".mov",
+  ".wmv",
+  ".amv",
+  ".mp4",
+  ".mpg",
+  ".mpeg",
+  ".mpv",
+  ".flv",
+];
+
+export const documentsExtensions = [
+  ".csv",
+  ".pdf",
+  ".doc",
+  ".docx",
+  ".odt",
+  ".html",
+  ".htm",
+  ".ppt",
+  ".pptx",
+  ".txt",
+];

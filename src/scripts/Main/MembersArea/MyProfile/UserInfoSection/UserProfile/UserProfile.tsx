@@ -2,6 +2,8 @@ import { callDispatch, getSelector } from "@redux/Actions";
 import { setMemberProfile } from "@redux/AsyncThunks/AsyncThunksMembers";
 import * as React from "react";
 import "./UserProfile.scss";
+const userIcon =
+  "https://firebasestorage.googleapis.com/v0/b/prototype-ae9eb.appspot.com/o/Members%2FMyProfile%2Fuser_icon_150670.png?alt=media&token=c0e68433-ead8-465b-ac37-f6a31feee7f0";
 
 const UserProfile: React.FC = () => {
   const user = getSelector("user");
@@ -11,7 +13,7 @@ const UserProfile: React.FC = () => {
     dispatch(
       setMemberProfile({
         photoFiles: e.target.files,
-        displayName: "Some Name",
+        displayName: user.displayName,
         uid: user.uid,
       })
     ).then((resp) => {
@@ -29,8 +31,8 @@ const UserProfile: React.FC = () => {
   return (
     <div className="user-profile-wrapper">
       <img
-        src={user?.photoURL}
-        alt="prifile-image"
+        src={user?.photoURL || userIcon}
+        alt="profile-image"
         className="user-profile_image"
       />
       <div className="upload-image-container">

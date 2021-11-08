@@ -3,3 +3,10 @@ export interface MediaFilesTypes {
     photos: string[];
   };
 }
+
+export interface MediaItemTypes {
+  data: {
+    url: string;
+    i: number;
+  };
+}

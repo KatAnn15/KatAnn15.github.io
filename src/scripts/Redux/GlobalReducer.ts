@@ -14,17 +14,21 @@ import { memberMiddleware } from "./Middleware/MemberMiddleware";
 import { planMiddleware } from "./Middleware/PlanMiddleware";
 import { SubscribedStatus, MemberStatus, User } from "./UserReducers";
 import {
+  loginModalSlice,
   pageSlice,
   planSlice,
   profileCategorySlice,
   profilleActivitiesSlice,
 } from "./StateReducers";
 import { memeberActivityMiddleware } from "./Middleware/MemberActivityMiddleware";
+import { setStorageSlice } from "./AsyncSlices/SetStorageDataSlice";
+import { setFirestoreSlice } from "./AsyncSlices/SetFirestoreData";
 
 const RootReducer = combineReducers({
   user: User.reducer,
   subscribedStatus: SubscribedStatus.reducer,
   membersStatus: MemberStatus.reducer,
+  login: loginModalSlice.reducer,
   updateProfile: memberProfileSlice.reducer,
   movies: moviesSlice.reducer,
   page: pageSlice.reducer,
@@ -40,6 +44,8 @@ const RootReducer = combineReducers({
   allPlans: allPlansSlice.reducer,
   profileCategory: profileCategorySlice.reducer,
   profileActivities: profilleActivitiesSlice.reducer,
+  setStorage: setStorageSlice.reducer,
+  setFirestore: setFirestoreSlice.reducer,
 });
 export const store = configureStore({
   reducer: RootReducer,

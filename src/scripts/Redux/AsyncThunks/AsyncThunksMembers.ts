@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getFirestoreData, getStorageItem } from "@firebaseMy/firebase_actions";
-import { auth, storage } from "@firebaseMy/firebase_setup";
+import { auth, storage, db } from "@firebaseMy/firebase_setup";
 import { uploadBytes } from "@firebase/storage";
 import { getAuth } from "@firebase/auth";
 

@@ -34,6 +34,16 @@
     border-radius: 2px;
     background-color: transparent;
     color: white;
+    &:hover::after {
+      content: "My Profile";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      transform: translateY(100%);
+      opacity: 0.7;
+      border: 1px solid rgba(128, 128, 128, 0.603);
+      padding: 3px;
+    }
   }
 }
 

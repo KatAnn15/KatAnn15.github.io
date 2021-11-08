@@ -1,10 +1,10 @@
-import * as React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import firebase from "../../Firebase/firebase_setup";
 import MembersBar from "../MembersBar/MembersBar";
 import { Link } from "react-router-dom";
-const { useState, useEffect, useCallback } = React;
 import LoginModal from "../LoginModal/LoginModal";
 import "./HeaderHome.scss";
+import { getSelector } from "@redux/Actions";
 
 interface LogoProps {
   logo: string;
@@ -17,9 +17,7 @@ interface ModalVisibleProps {
 }
 const HeaderHome: React.FC = () => {
   const [logo, updateLogo] = useState<LogoProps["logo"]>("");
-  const [modalVisible, setModalVisibility] =
-    useState<ModalVisibleProps["modalVisible"]>(false);
-
+  const modalVisible = getSelector("login");
   const fetchLogo = useCallback(async () => {
     const ref = firebase.storage().ref();
     const fileData = await ref.child("ATFImages/netflix.png");
@@ -36,10 +34,8 @@ const HeaderHome: React.FC = () => {
       <Link to={"/"}>
         <img className="site-logo-img" src={logo} alt="Netflix logo" />
       </Link>
-      <MembersBar setModalVisibility={setModalVisibility} />
-      {modalVisible ? (
-        <LoginModal setModalVisibility={setModalVisibility} />
-      ) : null}
+      <MembersBar />
+      {modalVisible ? <LoginModal /> : null}
     </div>
   );
 };

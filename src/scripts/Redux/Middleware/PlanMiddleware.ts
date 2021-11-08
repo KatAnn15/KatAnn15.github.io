@@ -10,21 +10,11 @@ export const planMiddleware = (storeApi) => (next) => (action) => {
   return result.then(() => {
     const state = store.getState();
     if (state.plan.value === null) {
-      if (window.localStorage) {
-        const item = window.localStorage.getItem("Prototype-defaultPlan");
-        if (!item) {
-          if (state.allPlans.status === "fulfilled") {
-            dispatch(setPlan(state.allPlans.value[0]));
-          } else if (state.allPlans.status === null) {
-            dispatch(getPlans());
-          }
-        } else {
-          if (!state.plan.value) {
-            dispatch(setPlan(JSON.parse(item)));
-          }
-        }
+      if (state.allPlans.status === "fulfilled") {
+        dispatch(setPlan(state.allPlans.value[0]));
+      } else if (state.allPlans.status === null) {
+        dispatch(getPlans());
       }
     }
-    return next(action);
   });
 };

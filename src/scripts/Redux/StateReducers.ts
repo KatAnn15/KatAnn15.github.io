@@ -56,7 +56,20 @@ export const profilleActivitiesSlice = createSlice({
   },
 });
 
+export const loginModalSlice = createSlice({
+  name: "login",
+  initialState: {
+    value: false,
+  },
+  reducers: {
+    setModalVisibility: (state, action) => {
+      state.value = action.payload;
+    },
+  },
+});
+
 export const { setPage } = pageSlice.actions;
 export const { setPlan } = planSlice.actions;
 export const { setProfileCat } = profileCategorySlice.actions;
 export const { setActivities } = profilleActivitiesSlice.actions;
+export const { setModalVisibility } = loginModalSlice.actions;

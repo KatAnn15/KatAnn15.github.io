@@ -7,15 +7,24 @@ import "./WatchedMovies.scss";
 const WatchedMovies: React.FC<WatchedMoviesTypes> = ({ data }) => {
   return (
     <div className="watched-movies-wrapper">
-      <h3 className="watched-movies_title">History</h3>
+      <h3 className="watched-movies_title">
+        <i className="far fa-file-video"></i> History
+      </h3>
       <div className="watched-movies_container">
-        {data.movies.map((item, i) => (
+        {data?.movies.map((item, i) => (
           <Link
             to={"movies/" + item.id}
             key={"wm" + i}
             className="watched-movie-link"
           >
             <img src={posterBase + item.poster} alt="posterImage" />
+            <span>
+              Watched on{" "}
+              {new Date(item._createdDate).toLocaleString("en-US", {
+                dateStyle: "medium",
+                timeStyle: "medium",
+              })}
+            </span>
           </Link>
         ))}
       </div>

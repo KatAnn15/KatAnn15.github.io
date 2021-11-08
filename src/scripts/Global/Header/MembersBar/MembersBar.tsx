@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import { setMemberStatus } from "@redux/UserReducers";
-import { getAuth } from "@firebase/auth";
 import { getSelector } from "@redux/Actions";
 import { useDispatch } from "react-redux";
 import "./MembersBar.scss";
-import { MembersBarProps, LoginDisplayProps } from "./MembersBarTypes";
+import { LoginDisplayProps } from "./MembersBarTypes";
+import { Link } from "react-router-dom";
+import { initUser } from "@constants/Functions";
+import { setModalVisibility } from "@redux/StateReducers";
 
-const MembersBar: React.FC<MembersBarProps> = ({ setModalVisibility }) => {
+const MembersBar: React.FC = () => {
   const user = getSelector("user");
   const memberStatus = getSelector("membersStatus");
   const dispatch = useDispatch();
@@ -19,7 +21,7 @@ const MembersBar: React.FC<MembersBarProps> = ({ setModalVisibility }) => {
     if (memberStatus) {
       dispatch(setMemberStatus(false));
     } else {
-      setModalVisibility(true);
+      dispatch(setModalVisibility(true));
     }
   };
 
@@ -31,27 +33,19 @@ const MembersBar: React.FC<MembersBarProps> = ({ setModalVisibility }) => {
     }
   };
   useEffect(() => {
-    if (!user) {
-      const auth = getAuth();
-      auth.onAuthStateChanged(() => {
-        if (auth.currentUser) {
-          dispatch(setMemberStatus(true));
-        } else {
-          dispatch(setMemberStatus(false));
-        }
-      });
-    }
+    initUser();
   });
 
   return (
     <div className="members-bar_wrapper">
       {memberStatus ? (
-        <button
+        <Link
+          to={"/my-profile"}
           className="member_welcome-message"
           onClick={toggleLoginBtnForMobile}
         >
           Welcome, {user?.displayName}
-        </button>
+        </Link>
       ) : null}
       <button
         className="members-bar_login-button"

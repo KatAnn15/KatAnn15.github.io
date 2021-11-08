@@ -10,6 +10,7 @@ import { MoviesListProps } from "./MoviesPagTypes";
 import { getMovies, setFetchedMovies } from "./MoviesPageActions";
 import { toggleFilter } from "@redux/AsyncSlices/ExpandFilterSlice";
 import { callDispatch, getSelector } from "@redux/Actions";
+import MemberMenuGlobal from "../../../Global/MemberMenuGlobal/MemberMenuGlobal";
 
 const MoviesPage: React.FC = () => {
   const [moviesList, setMoviesList] =
@@ -60,6 +61,7 @@ const MoviesPage: React.FC = () => {
   return (
     <div className="movies-page_wrapper">
       <HeaderGlobal />
+      <MemberMenuGlobal />
       <div className="filter-widget-space_wrapper">
         {filterExpanded ? (
           <FilterWidget />

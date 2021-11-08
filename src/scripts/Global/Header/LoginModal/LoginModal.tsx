@@ -1,18 +1,15 @@
 import { setMemberStatus } from "@redux/UserReducers";
 import React, { useState } from "react";
-import {
-  LoginModalProps,
-  ModalStateProps,
-  ErrorMessageProps,
-} from "./LoginModalTypes";
+import { ModalStateProps, ErrorMessageProps } from "./LoginModalTypes";
 import "./LoginModal.scss";
 import {
   emailPasswordAuthenticationHandler,
   handleLoginClick,
 } from "./LoginModalActions";
 import { callDispatch } from "@redux/Actions";
+import { setModalVisibility } from "@redux/StateReducers";
 
-const LoginModal: React.FC<LoginModalProps> = ({ setModalVisibility }) => {
+const LoginModal: React.FC = () => {
   const [modalState, setModalState] =
     useState<ModalStateProps["modalState"]>("login");
   const [errorMessage, setErrorMessage] = useState<
@@ -31,7 +28,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ setModalVisibility }) => {
   const handleUserSuccess: () => void = () => {
     dispatch(setMemberStatus(true));
     setErrorMessage({ visible: false, code: "" });
-    setModalVisibility(false);
+    dispatch(setModalVisibility(false));
   };
 
   return (
@@ -104,7 +101,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ setModalVisibility }) => {
         </div>
         <button
           className="login-modal_close-btn"
-          onClick={() => setModalVisibility(false)}
+          onClick={() => dispatch(setModalVisibility(false))}
         >
           &times;
         </button>

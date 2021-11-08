@@ -28,6 +28,7 @@ const ActivitiesMenu: React.FC = () => {
           </button>
         ));
       setProfileCats(categories);
+      if (!currentCat) dispatch(setProfileCat(resp[0].value));
     });
   }, [currentCat, dispatch, setProfileCat]);
   return <div className="activities-menu-wrapper">{profileCats}</div>;

@@ -1,15 +1,27 @@
 .media-files-wrapper {
   text-align: left;
+  position: relative;
   .media-files_title {
     font-size: 26px;
   }
   .media-container {
-    display: flex;
-    flex-wrap: wrap;
-    img {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: auto;
+    grid-gap: 10px;
+  }
+  .add-media_btn {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    padding: 9px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(161, 51, 51);
+      color: white;
     }
   }
 }

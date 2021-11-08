@@ -1,6 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { key, setCategoriesList } from "@constants/Constants";
 import { MovieItemDetailsProps } from "../../Main/MoviePageIndividual/MovieDetails/MovieIndDetailsTypes";
+import { uploadBytes } from "@firebase/storage";
+import { storage, db } from "@firebaseMy/firebase_setup";
+import { getStorageItem } from "@firebaseMy/firebase_actions";
+
 import axios from "axios";
 import firebase from "@firebaseMy/firebase_setup";
 
@@ -119,3 +123,26 @@ export const getPlans = createAsyncThunk("plans/getPlans", async () => {
   });
   return promise;
 });
+
+export const setFirestoreData = createAsyncThunk(
+  "firestoreData/setFirestoreData",
+  (data: { uid: string; collection: string; files: any }) => {
+    return db.collection(data.collection).doc(data.uid).set(data.files);
+  }
+);
+
+export const setStorageData = createAsyncThunk(
+  "storageData/setStorageData",
+  async (data: { uid: string; files: FileList }) => {
+    const uploadFiles = new Promise((resolve) => {
+      const path = `Members/Media/${data.uid}/`;
+      const files = Array.from(data.files).map((file) =>
+        uploadBytes(storage.ref(path + file.name), file).then(() =>
+          getStorageItem(path + file.name)
+        )
+      );
+      resolve(Promise.all(files));
+    });
+    return await uploadFiles;
+  }
+);

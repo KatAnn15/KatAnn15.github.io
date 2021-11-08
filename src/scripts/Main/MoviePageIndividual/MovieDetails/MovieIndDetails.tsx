@@ -5,6 +5,7 @@ import { getSelector } from "@redux/Actions";
 import { getOneMovie } from "@redux/AsyncThunks/AsyncThunks";
 import { useDispatch } from "react-redux";
 import { netflixLogo } from "@constants/Constants";
+import MovieActivity from "./MovieActivity/MovieActivity";
 
 const MovieItemDetails: React.FC<MovieItemDetailsProps["movieData"]> = ({
   id,
@@ -12,10 +13,12 @@ const MovieItemDetails: React.FC<MovieItemDetailsProps["movieData"]> = ({
   const dispatch = useDispatch();
   const movieDetails = getSelector("movie");
   const subscribed = getSelector("subscribedStatus");
+  const user = getSelector("user");
 
   useEffect(() => {
     dispatch(getOneMovie(id));
   }, [getOneMovie, id]);
+
   return (
     <div className="movie-item-details_wrapper">
       <div
@@ -26,6 +29,10 @@ const MovieItemDetails: React.FC<MovieItemDetailsProps["movieData"]> = ({
             : `url(${netflixLogo})`,
         }}
       ></div>
+      <p>{JSON.stringify(user)}</p>
+      {user ? (
+        <MovieActivity id={id} poster={movieDetails.poster_path} />
+      ) : null}
       <div className="movie-item_main-data movie-item_block">
         <div className="movie-item_audience-data movie-item_sub-block">
           <h3 className="movie-item_audience-data_adult-status">

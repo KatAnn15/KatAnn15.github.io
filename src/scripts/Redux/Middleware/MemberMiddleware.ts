@@ -19,7 +19,6 @@ export const memberMiddleware = (storeApi) => (next) => (action) => {
 };
 
 function createUser(user: firebase.default.User) {
-  console.log(user.uid);
   return {
     email: user.email,
     displayName: user.displayName

@@ -5,7 +5,6 @@ import "./PricingPlanItem.scss";
 import { isMobile } from "react-device-detect";
 import { callDispatch, getSelector } from "@redux/Actions";
 import { setPlan } from "@redux/StateReducers";
-import { store } from "@redux/GlobalReducer";
 
 const PricingPlanItem: React.FC<PricingPlanItemProps> = ({
   data,

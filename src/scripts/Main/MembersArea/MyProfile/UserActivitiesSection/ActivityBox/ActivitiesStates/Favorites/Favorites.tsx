@@ -7,9 +7,11 @@ import "./Favorites.scss";
 const Favorites: React.FC<FavoritesTypes> = ({ data }) => {
   return (
     <div className="favorites-wrapper">
-      <h3 className="favorites_title">Favorites</h3>
+      <h3 className="favorites_title">
+        <i className="far fa-thumbs-up"></i> Favorites
+      </h3>
       <div className="favorites_container">
-        {data.movies.map((item, i) => (
+        {data?.movies.map((item, i) => (
           <Link
             to={"movies/" + item.id}
             key={"wm" + i}

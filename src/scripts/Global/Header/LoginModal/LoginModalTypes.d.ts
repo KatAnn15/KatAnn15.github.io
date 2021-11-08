@@ -15,7 +15,3 @@ export interface ErrorMessageProps {
     }>
   >;
 }
-
-export interface LoginModalProps {
-  setModalVisibility: React.Dispatch<React.SetStateAction<Boolean>>;
-}
