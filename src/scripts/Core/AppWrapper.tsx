@@ -5,11 +5,9 @@ import { Provider } from "react-redux";
 
 const AppWrapper: React.FC = () => {
   return (
-    <div className="appWrapper">
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </div>
+    <Provider store={store}>
+      <App />
+    </Provider>
   );
 };
 

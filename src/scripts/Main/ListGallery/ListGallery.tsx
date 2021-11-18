@@ -1,7 +1,6 @@
-import * as React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ListGalleryItem from "./ListGalleryItem/ListGalleryItem";
 import firebase from "../../Global/Firebase/firebase_setup";
-const { useCallback, useEffect, useState } = React;
 import "./ListGallery.scss";
 import { getFirestoreData } from "../../Global/Firebase/firebase_actions";
 
@@ -51,7 +50,11 @@ const ListGallery: React.FC = () => {
     fetchListGalleryItems();
   }, [fetchListGalleryItems]);
 
-  return <div className="list-gallery_wrapper">{files}</div>;
+  return (
+    <div className="list-gallery_wrapper" data-testid="test_list">
+      {files}
+    </div>
+  );
 };
 
 export default ListGallery;

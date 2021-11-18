@@ -29,7 +29,6 @@ const MovieItemDetails: React.FC<MovieItemDetailsProps["movieData"]> = ({
             : `url(${netflixLogo})`,
         }}
       ></div>
-      <p>{JSON.stringify(user)}</p>
       {user ? (
         <MovieActivity id={id} poster={movieDetails.poster_path} />
       ) : null}

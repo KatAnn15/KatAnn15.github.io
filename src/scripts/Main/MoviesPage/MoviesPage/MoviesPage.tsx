@@ -70,6 +70,7 @@ const MoviesPage: React.FC = () => {
             className="filter-widget-space_title"
             onClick={() => dispatch(toggleFilter())}
             style={{ top: "50px" }}
+            data-testid="test_filterToggle"
           >
             Discover More
           </h3>

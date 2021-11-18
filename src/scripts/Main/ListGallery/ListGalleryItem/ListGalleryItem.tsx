@@ -26,11 +26,18 @@ const ListGalleryItem: React.FC<GalleryItemProps> = ({
   name,
 }) => {
   return (
-    <div className="list-gallery-item_wrapper">
+    <div className="list-gallery-item_wrapper" data-testid="test_listItem">
       <div className="list-gallery-item_content-wrapper">
         <div className="list-gallery-item_info-container">
-          <h2 className="list-gallery-item_title">{title}</h2>
-          <h3 className="list-gallery-item_subtitle">{subtitle}</h3>
+          <h2 className="list-gallery-item_title" data-testid="test_item-title">
+            {title}
+          </h2>
+          <h3
+            className="list-gallery-item_subtitle"
+            data-testid="test_item-subtitle"
+          >
+            {subtitle}
+          </h3>
         </div>
         <div className="list-gallery-item_media-container">
           {videoCover ? <VideoCover videoCover={videoCover} /> : null}
@@ -38,6 +45,7 @@ const ListGalleryItem: React.FC<GalleryItemProps> = ({
             src={mediaURL}
             alt={mediaAlt}
             className="list-gallery-item_image"
+            data-testid="test_item-image"
           />
           {additionalBox ? (
             <AdditionalBox

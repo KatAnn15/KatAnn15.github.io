@@ -32,7 +32,9 @@
       "@images/*": ["src/assets/images/*"],
       "@redux/*": ["src/scripts/Redux/*"],
       "@constants/*": ["src/scripts/Constants/*"],
-      "@firebaseMy/*": ["src/scripts/Global/Firebase/*"]
+      "@firebaseMy/*": ["src/scripts/Global/Firebase/*"],
+      "@test-utils": ["src/test-utils"],
+      "@scriptsMy/*": ["src/scripts/*"]
     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
@@ -103,5 +105,5 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*", "modules.d.ts"]
+  "include": ["src/**/*", "modules.d.ts", "tests-resolver.g=config.ts"]
 }

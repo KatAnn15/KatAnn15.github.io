@@ -7,7 +7,11 @@ import { toggleFilter } from "@redux/AsyncSlices/ExpandFilterSlice";
 const FilterWidget: React.FC = () => {
   const dispatch = useDispatch();
   return (
-    <div className="filter-widget_wrapper" style={{ top: 0 }}>
+    <div
+      className="filter-widget_wrapper"
+      style={{ top: 0 }}
+      data-testid="test_filterWidget"
+    >
       <FilterCategoriesList />
       <button
         className="filter-widget_close-btn"

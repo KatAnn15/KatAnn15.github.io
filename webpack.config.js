@@ -83,6 +83,8 @@ module.exports = {
       "@redux": path.resolve(__dirname, "src/scripts/Redux"),
       "@constants": path.resolve(__dirname, "src/scripts/Constants"),
       "@firebaseMy": path.resolve(__dirname, "src/scripts/Global/Firebase"),
+      "@test-utils": path.resolve(__dirname, "src/test-utils"),
+      "@scriptsMy": path.resolve(__dirname, "src/scripts"),
     },
     fallback: {
       https: false,

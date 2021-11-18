@@ -46,9 +46,14 @@ const SearchBar: React.FC = () => {
         placeholder="Search a movie..."
         autoComplete="off"
         onInput={searchMovie}
+        data-testid="test_searchInput"
       />
-      <div className="search-options_wrapper" style={{ display: display }}>
-        {searchItems.map((item) => (
+      <div
+        className="search-options_wrapper"
+        style={{ display: display }}
+        data-testid="test_searchResults"
+      >
+        {searchItems?.map((item) => (
           <Link to={"/movies/" + item.id} key={item.id}>
             <SearchItem title={item.title} poster_path={item.poster_path} />
           </Link>

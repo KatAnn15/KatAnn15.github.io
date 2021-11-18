@@ -1,10 +1,8 @@
 import * as React from "react";
-import { getSelector } from "@redux/Actions";
 import { Link } from "react-router-dom";
 import "./MemberMenuGlobal.scss";
 
 const MemberMenuGlobal: React.FC = () => {
-  const user = getSelector("user");
   return (
     <div className="member-menu-global-wrapper">
       <div className="member-menu_container">
