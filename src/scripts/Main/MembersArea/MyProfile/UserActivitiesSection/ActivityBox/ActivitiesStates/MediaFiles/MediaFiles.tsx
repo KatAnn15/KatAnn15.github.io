@@ -21,7 +21,7 @@ const MediaFiles: React.FC<MediaFilesTypes> = ({ data }) => {
     if (files) {
       dispatch(setStorageData({ uid: uid, files: files })).then((response) => {
         let newPhotos: any[] = [];
-        if (activities[profileCategory].photos) {
+        if (activities[profileCategory][0].photos) {
           newPhotos = [...activities[profileCategory]][0].photos;
         }
         newPhotos = newPhotos.concat(response.payload);
