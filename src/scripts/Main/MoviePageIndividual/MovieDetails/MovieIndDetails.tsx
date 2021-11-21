@@ -76,11 +76,9 @@ const MovieItemDetails: React.FC<MovieItemDetailsProps["movieData"]> = ({
             <span>Genres:</span> <br />
           </h3>
           <h3 className="movie-item_stats_revenue">
-            {" "}
             <span>Revenue: </span> <br /> {movieDetails.revenue}
           </h3>
           <h3 className="movie-item_stats_vote-count">
-            {" "}
             <span>Voted:</span> <br /> {movieDetails.vote_count}
           </h3>
           <h3 className="movie-item_stats_status">

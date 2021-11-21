@@ -106,7 +106,7 @@
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "express-formidable-v2": "^2.2.0",
-    "firebase": "^9.4.1",
+    "firebase": "^9.5.0",
     "fs": "^0.0.1-security",
     "google-maps-react": "^2.0.6",
     "https": "^1.0.0",

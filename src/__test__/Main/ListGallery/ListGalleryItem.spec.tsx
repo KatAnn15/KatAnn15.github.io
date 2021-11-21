@@ -1,7 +1,6 @@
 import * as React from "react";
 import { render, screen } from "@testing-library/react";
 import ListGalleryItem from "@scriptsMy/Main/ListGallery/ListGalleryItem/ListGalleryItem";
-import AdditionalBox from "@scriptsMy/Main/ListGallery/ListGalleryItem/AdditionalBox";
 
 test("display gallery item info", () => {
   const { getByTestId } = render(

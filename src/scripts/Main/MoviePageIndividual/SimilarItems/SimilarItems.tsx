@@ -21,7 +21,10 @@ const SimilarItems: React.FC<MovieItemSimilarProps> = ({ id }) => {
   return (
     <div className="movie-item-similar_wrapper">
       <h3 className="movie-item_similar_text">Discover More:</h3>
-      <div className="movie-item_similar_container">
+      <div
+        className="movie-item_similar_container"
+        data-testid="test_similarItems"
+      >
         {similar.map((item, i) => (
           <Link to={"/movies/" + item.id} key={"simLink" + i}>
             <SimilarItem data={item} key={"similar" + i} />
