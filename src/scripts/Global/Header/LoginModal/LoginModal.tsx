@@ -32,7 +32,7 @@ const LoginModal: React.FC = () => {
   };
 
   return (
-    <div className="login-modal_wrapper">
+    <div className="login-modal_wrapper" data-testid="test_loginModal">
       <div className="login-modal_container">
         <h1 className="login-modal_title" onClick={modalStateHandler}>
           {modalState === "login"
@@ -44,12 +44,14 @@ const LoginModal: React.FC = () => {
           className="login-form_email"
           id="login-form_email"
           onInput={(e) => setErrorMessage({ visible: false, code: "" })}
+          data-testid="test_emailInput"
         />
         <input
           type="password"
           className="login-form_password"
           id="login-form_password"
           onInput={(e) => setErrorMessage({ visible: false, code: "" })}
+          data-testid="test_passInput"
         />
         {errorMessage.visible ? (
           <h5 className="login-modal_error-message" style={{ color: "red" }}>
@@ -65,6 +67,7 @@ const LoginModal: React.FC = () => {
               setErrorMessage
             )
           }
+          data-testid="test_loginSubmitBtn"
         >
           Submit
         </button>

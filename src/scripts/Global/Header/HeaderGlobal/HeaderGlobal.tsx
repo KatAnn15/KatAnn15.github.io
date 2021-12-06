@@ -48,7 +48,7 @@ const HeaderGlobal: React.FC = () => {
   }, [fetchLogo]);
 
   return (
-    <div className="header-global_wrapper">
+    <div className="header-global_wrapper" data-testid="test_globalHeader">
       <Link to={"/"}>
         <img className="site-logo-img" src={logo} alt="Netflix logo" />
       </Link>
@@ -64,10 +64,19 @@ const HeaderGlobal: React.FC = () => {
         </span>
         {!subscribed && loggedIn ? (
           <Link to={"/pricing-plans"}>
-            <button className="subscription-bar">Join Now</button>
+            <button
+              className="subscription-bar"
+              data-testid="test_subscribeButton"
+            >
+              Join Now
+            </button>
           </Link>
         ) : null}
-        <button className="login-bar" onClick={setLoggedInStatus}>
+        <button
+          className="login-bar"
+          onClick={setLoggedInStatus}
+          data-testid="test_loginButton"
+        >
           {loggedIn ? "Sign Out" : "Sign Up"}
         </button>
       </div>
@@ -75,6 +84,7 @@ const HeaderGlobal: React.FC = () => {
         <button
           className="members-bar_mobile-more-btn"
           onClick={toggleMembersAreaMobile}
+          data-testid="test_members-mobileBtn"
         >
           More
         </button>

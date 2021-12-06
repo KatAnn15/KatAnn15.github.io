@@ -43,12 +43,14 @@ const MembersBar: React.FC = () => {
           to={"/my-profile"}
           className="member_welcome-message"
           onClick={toggleLoginBtnForMobile}
+          data-testid="test_myProfileBtn"
         >
           Welcome, {user?.displayName}
         </Link>
       ) : null}
       <button
         className="members-bar_login-button"
+        data-testid="test_membersBarLoginBtn"
         style={{
           display:
             (isMobile && !memberStatus) || !isMobile ? "block" : mLoginDisplay,

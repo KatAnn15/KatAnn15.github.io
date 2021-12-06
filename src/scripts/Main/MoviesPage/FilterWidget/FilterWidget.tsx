@@ -12,7 +12,7 @@ const FilterWidget: React.FC = () => {
       style={{ top: 0 }}
       data-testid="test_filterWidget"
     >
-      <FilterCategoriesList />
+      <FilterCategoriesList /> 
       <button
         className="filter-widget_close-btn"
         onClick={() => dispatch(toggleFilter())}

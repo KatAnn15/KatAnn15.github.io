@@ -11,10 +11,6 @@ interface LogoProps {
   updateLogo: string;
 }
 
-interface ModalVisibleProps {
-  modalVisible: Boolean;
-  setModalVisibility: React.Dispatch<React.SetStateAction<Boolean>>;
-}
 const HeaderHome: React.FC = () => {
   const [logo, updateLogo] = useState<LogoProps["logo"]>("");
   const modalVisible = getSelector("login");

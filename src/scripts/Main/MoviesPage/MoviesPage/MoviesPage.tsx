@@ -19,6 +19,7 @@ const MoviesPage: React.FC = () => {
   const search = location.search;
   const page = getSelector("page");
   const filterExpanded = getSelector("fiterToggle");
+  const loggedIn = getSelector("membersStatus");
   const dispatch = callDispatch();
 
   const setMoviesListDeafult = useCallback(async () => {
@@ -61,7 +62,7 @@ const MoviesPage: React.FC = () => {
   return (
     <div className="movies-page_wrapper">
       <HeaderGlobal />
-      <MemberMenuGlobal />
+      {loggedIn ? <MemberMenuGlobal /> : null}
       <div className="filter-widget-space_wrapper">
         {filterExpanded ? (
           <FilterWidget />

@@ -1,5 +1,5 @@
-Nov 13, 2021 8:45:22 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start
-INFO: Started WebSocket server on ws://localhost:44871
+Nov 29, 2021 9:30:42 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start
+INFO: Started WebSocket server on ws://localhost:39819
 API endpoint: http://localhost:8080
 If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:
 
@@ -7,79 +7,61 @@ If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment
 
 Dev App Server is now running.
 
-Nov 13, 2021 8:48:54 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 8:49:33 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 8:49:53 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 8:52:45 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 8:53:06 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 8:53:38 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 8:54:16 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 8:55:56 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 8:56:58 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 8:57:10 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 9:01:36 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 9:08:23 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 9:30:23 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Nov 29, 2021 9:31:01 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Nov 13, 2021 9:30:23 PM io.gapi.emulators.netty.NotFoundHandler handleRequest
-INFO: Unknown request URI: /ws
-Nov 13, 2021 9:30:24 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Nov 29, 2021 9:31:01 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel
+INFO: Connected to new websocket client
+Nov 29, 2021 9:31:05 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Nov 13, 2021 9:30:24 PM io.gapi.emulators.netty.NotFoundHandler handleRequest
-INFO: Unknown request URI: /ws
-Nov 13, 2021 9:30:26 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Nov 29, 2021 9:31:07 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Nov 13, 2021 9:30:26 PM io.gapi.emulators.netty.NotFoundHandler handleRequest
-INFO: Unknown request URI: /ws
-Nov 13, 2021 9:30:30 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Nov 29, 2021 9:31:09 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Nov 13, 2021 9:30:30 PM io.gapi.emulators.netty.NotFoundHandler handleRequest
-INFO: Unknown request URI: /ws
-Nov 13, 2021 9:30:38 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Nov 29, 2021 9:31:11 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Nov 13, 2021 9:30:38 PM io.gapi.emulators.netty.NotFoundHandler handleRequest
-INFO: Unknown request URI: /ws
-Nov 13, 2021 9:30:54 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Nov 29, 2021 9:31:13 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Nov 13, 2021 9:30:54 PM io.gapi.emulators.netty.NotFoundHandler handleRequest
-INFO: Unknown request URI: /ws
-Nov 13, 2021 9:31:26 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Nov 29, 2021 9:31:15 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Nov 13, 2021 9:31:26 PM io.gapi.emulators.netty.NotFoundHandler handleRequest
-INFO: Unknown request URI: /ws
-Nov 13, 2021 9:32:30 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Nov 29, 2021 9:31:17 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Nov 13, 2021 9:32:30 PM io.gapi.emulators.netty.NotFoundHandler handleRequest
-INFO: Unknown request URI: /ws
-Nov 13, 2021 9:34:38 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Nov 29, 2021 9:31:19 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Nov 13, 2021 9:34:38 PM io.gapi.emulators.netty.NotFoundHandler handleRequest
-INFO: Unknown request URI: /ws
-Nov 13, 2021 9:38:54 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Nov 29, 2021 9:31:21 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Nov 13, 2021 9:38:54 PM io.gapi.emulators.netty.NotFoundHandler handleRequest
-INFO: Unknown request URI: /ws
-Nov 13, 2021 9:47:26 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Nov 29, 2021 9:31:23 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Nov 13, 2021 9:47:26 PM io.gapi.emulators.netty.NotFoundHandler handleRequest
-INFO: Unknown request URI: /ws
-Nov 13, 2021 9:48:40 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 9:51:58 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
-Nov 13, 2021 9:53:36 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected HTTP/2 connection.
+Nov 29, 2021 9:31:26 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:28 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:30 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:32 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:34 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:36 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:38 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:40 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:42 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:44 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:46 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:48 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:31:50 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 9:42:38 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 10:34:58 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+Nov 29, 2021 10:34:59 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed
+INFO: Websocket client disconnected
 *** shutting down gRPC server since JVM is shutting down
 *** server shut down
